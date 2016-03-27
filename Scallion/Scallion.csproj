@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\MMDFile.cs" />
+    <Compile Include="Core\MMDObject.cs" />
+    <Compile Include="Core\MoDeserializer.cs" />
+    <Compile Include="Core\MoSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
