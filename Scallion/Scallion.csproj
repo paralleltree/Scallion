@@ -52,9 +52,15 @@
     <Compile Include="Core\MoDeserializer.cs" />
     <Compile Include="Core\MoSerializer.cs" />
     <Compile Include="Internal\StructWrapper.cs" />
+    <Compile Include="DomainModels\Components\BoneInterpolation.cs" />
+    <Compile Include="DomainModels\Components\Interpolation.cs" />
     <Compile Include="Internal\IOExtension.cs" />
     <Compile Include="Internal\StructWrappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Raw\Components\BoneInterpolation.cs" />
+    <Compile Include="Raw\Components\CameraInterpolation.cs" />
+    <Compile Include="Raw\Components\KeyFrame.cs" />
+    <Compile Include="Raw\Components\Motion\BoneInterpolationImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
