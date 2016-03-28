@@ -51,6 +51,9 @@
     <Compile Include="Core\MMDObject.cs" />
     <Compile Include="Core\MoDeserializer.cs" />
     <Compile Include="Core\MoSerializer.cs" />
+    <Compile Include="Internal\StructWrapper.cs" />
+    <Compile Include="Internal\IOExtension.cs" />
+    <Compile Include="Internal\StructWrappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
