@@ -61,6 +61,13 @@
     <Compile Include="Raw\Components\CameraInterpolation.cs" />
     <Compile Include="Raw\Components\KeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\BoneInterpolationImpl.cs" />
+    <Compile Include="Raw\Components\Motion\BoneKeyFrame.cs" />
+    <Compile Include="Raw\Components\Motion\CameraKeyFrame.cs" />
+    <Compile Include="Raw\Components\Motion\LightKeyFrame.cs" />
+    <Compile Include="Raw\Components\Motion\ModelKeyFrame.cs" />
+    <Compile Include="Raw\Components\Motion\MorphKeyFrame.cs" />
+    <Compile Include="Raw\Components\Motion\SelfShadowKeyFrame.cs" />
+    <Compile Include="Raw\Motion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
