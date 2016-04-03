@@ -7,18 +7,19 @@ namespace Scallion.Core
 {
     public interface IMMDFile<T>
     {
-        void Load(string path);
+        T Load(string path);
         void Save(string path);
     }
 
-    internal abstract class MMDFile<T> : MMDObject, IMMDFile<T>
+    internal abstract class MMDFile<T> : MMDObject, IMMDFile<T> where T : MMDFile<T>
     {
-        public void Load(string path)
+        public T Load(string path)
         {
             using (var input = new FileStream(path, FileMode.Open))
             {
                 this.Deserialize(new MoDeserializer(input));
             }
+            return (T)this;
         }
 
         public void Save(string path)

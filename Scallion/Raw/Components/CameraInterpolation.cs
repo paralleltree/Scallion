@@ -107,5 +107,19 @@ namespace Scallion.Raw.Components
             V.First = first;
             V.Second = second;
         }
+
+
+        public static implicit operator DomainModels.Components.CameraInterpolation(CameraInterpolation c)
+        {
+            return new DomainModels.Components.CameraInterpolation()
+            {
+                X = c.X,
+                Y = c.Y,
+                Z = c.Z,
+                R = c.R,
+                D = c.D,
+                V = c.V
+            };
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Scallion.Core;
+using Scallion.DomainModels.Components;
 
 namespace Scallion.Raw.Components.Motion
 {
@@ -24,12 +25,5 @@ namespace Scallion.Raw.Components.Motion
             Type = (SelfShadowType)archive.ReadByte();
             Distance = (int)Math.Round(10000 - archive.ReadSingle() * 100000);
         }
-    }
-
-    public enum SelfShadowType
-    {
-        Off,
-        Mode1,
-        Mode2
     }
 }

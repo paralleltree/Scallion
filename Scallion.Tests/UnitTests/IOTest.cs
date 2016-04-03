@@ -19,8 +19,7 @@ namespace Scallion.Tests.UnitTests
         public void LoadingRawBinaryTest(string binaryPath, string fixturePath)
         {
             var expected = JsonConvert.DeserializeObject<T>(File.ReadAllText(fixturePath));
-            var actual = new T();
-            actual.Load(binaryPath);
+            var actual = new T().Load(binaryPath);
             actual.AssertPropertyValuesAreEquals(expected);
         }
 
