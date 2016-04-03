@@ -1,0 +1,49 @@
+version: '{build}'
+os: Visual Studio 2015
+configuration: Release
+platform: Any CPU
+skip_tags: true
+before_build:
+- ps: >-
+    git lfs pull
+
+    nuget restore
+build:
+  project: Scallion.sln
+  verbosity: minimal
+test_script:
+- ps: >-
+    $test_dll_dir = (Resolve-Path "*.Tests\bin\$env:CONFIGURATION").ToString()
+
+    $opencover = (Resolve-Path "packages\OpenCover.*\tools\OpenCover.Console.exe").ToString()
+
+    $targetargs = """$((Resolve-Path "$test_dll_dir\*.Tests.dll").ToString())"" /noshadow"
+
+    $filter = "+[*]Scallion.* -[*]Scallion.Tests.*"
+
+    & $opencover -register:user -target:nunit-console.exe "-targetargs:$targetargs" "-filter:$filter" -returntargetcode -hideskipped:All -output:coverage.xml
+
+    $env:Path = "C:\Python34;C:\Python34\Scripts;$env:Path"
+
+    python -m pip install --upgrade pip
+
+    pip install codecov
+
+    &{codecov -f "coverage.xml"}
+artifacts:
+- path: Scallion\bin\$(configuration)
+  name: Scallion
+deploy:
+- provider: NuGet
+  api_key:
+    secure: fb6UDblafl4cIHQVhvG2PO5erdbxkG7Rv18HagRKkrbcLS6+fmu3OQi1LsD7uZF5
+  on:
+    branch: master
+- provider: GitHub
+  release: Scallion
+  auth_token:
+    secure: KkbkUfg5iFaqdqxRAHRvPZv5+nfF99DyufxN6IijxL2TWoV3QTdkAkrnyNvIPt9+
+  artifact: Scallion
+  draft: true
+  on:
+    branch: master
