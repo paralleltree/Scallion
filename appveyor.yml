@@ -30,9 +30,20 @@ test_script:
     pip install codecov
 
     &{codecov -f "coverage.xml"}
+artifacts:
+- path: Scallion\bin\$(configuration)
+  name: Scallion
 deploy:
 - provider: NuGet
   api_key:
     secure: fb6UDblafl4cIHQVhvG2PO5erdbxkG7Rv18HagRKkrbcLS6+fmu3OQi1LsD7uZF5
+  on:
+    branch: master
+- provider: GitHub
+  release: Scallion
+  auth_token:
+    secure: KkbkUfg5iFaqdqxRAHRvPZv5+nfF99DyufxN6IijxL2TWoV3QTdkAkrnyNvIPt9+
+  artifact: Scallion
+  draft: true
   on:
     branch: master
