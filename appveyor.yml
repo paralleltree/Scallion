@@ -11,6 +11,7 @@ before_build:
 build:
   project: Scallion.sln
   verbosity: minimal
+  publish_nuget: true
 test_script:
 - ps: >-
     $test_dll_dir = (Resolve-Path "*.Tests\bin\$env:CONFIGURATION").ToString()
