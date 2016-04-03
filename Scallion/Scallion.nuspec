@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <title>$title$</title>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/paralleltree/Scallion/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/paralleltree/Scallion</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <tags>MMD MikuMikuDance</tags>
+    <dependencies>
+      <dependency id="System.Numerics.Vectors" version="4.1.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Drawing" targetFramework="net46" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
