@@ -4,10 +4,11 @@ using System.Linq;
 
 using Scallion.Core;
 using Scallion.DomainModels.Components;
+using Scallion.Internal.Converters.Motion;
 
 namespace Scallion.DomainModels
 {
-    public class Motion
+    public class Motion : IMMDFile<Motion>
     {
         public string ModelName { get; set; }
         public List<Bone> Bones { get; set; }
@@ -25,6 +26,16 @@ namespace Scallion.DomainModels
         public Motion()
         {
             VisibilityKeyFrames = new LinkedList<VisibilityKeyFrame>();
+        }
+
+        public Motion Load(string path)
+        {
+            return new MotionConverter().Convert(new Raw.Motion().Load(path), this);
+        }
+
+        public void Save(string path)
+        {
+            new MotionConverter().ConvertBack(this, new Raw.Motion()).Save(path);
         }
     }
 }
