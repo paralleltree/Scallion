@@ -19,16 +19,16 @@ namespace Scallion.Tests.Internal
 
         public static void AssertPropertyValuesAreEquals(this object actual, object expected)
         {
-            PropertyInfo[] properties = expected.GetType().GetProperties();
+            var properties = expected.GetType().GetProperties().Where(p => p.CanWrite);
             foreach (PropertyInfo property in properties)
             {
                 object expectedValue = property.GetValue(expected, null);
                 object actualValue = property.GetValue(actual, null);
 
-                if (actualValue is IList)
+                if (actualValue is ICollection)
                     // Comparison for elements contained in the list
-                    property.AssertListsAreEquals((IList)actualValue, (IList)expectedValue);
-                else if (!actualValue.GetType().IsValueType && actualValue.GetType().Namespace != "System")
+                    property.AssertListsAreEquals((ICollection)actualValue, (ICollection)expectedValue);
+                else if (!actualValue.GetType().IsValueType && !actualValue.GetType().Namespace.StartsWith("System"))
                     // Recursively comparison for not built-in class
                     actualValue.AssertPropertyValuesAreEquals(expectedValue);
                 else if (!actualValue.Equals(expectedValue))
@@ -38,14 +38,18 @@ namespace Scallion.Tests.Internal
             }
         }
 
-        private static void AssertListsAreEquals(this PropertyInfo property, IList actualList, IList expectedList)
+        private static void AssertListsAreEquals(this PropertyInfo property, ICollection actualList, ICollection expectedList)
         {
             if (actualList.Count != expectedList.Count)
-                Assert.Fail("Property {0}.{1} does not match. Expected IList containing {2} elements but was IList containing {3} elements.",
+                Assert.Fail("Property {0}.{1} does not match. Expected ICollection containing {2} elements but was ICollection containing {3} elements.",
                     property.PropertyType.Name, property.Name, expectedList.Count, actualList.Count);
 
-            for (int i = 0; i < actualList.Count; i++)
-                actualList[i].AssertPropertyValuesAreEquals(expectedList[i]);
+            var actual = actualList.GetEnumerator();
+            var expected = expectedList.GetEnumerator();
+            while (actual.MoveNext() && expected.MoveNext())
+            {
+                actual.Current.AssertPropertyValuesAreEquals(expected.Current);
+            }
         }
     }
 
