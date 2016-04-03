@@ -51,9 +51,17 @@
     <Compile Include="Core\MMDObject.cs" />
     <Compile Include="Core\MoDeserializer.cs" />
     <Compile Include="Core\MoSerializer.cs" />
+    <Compile Include="DomainModels\Components\Camera.cs" />
+    <Compile Include="DomainModels\Components\CameraInterpolation.cs" />
+    <Compile Include="DomainModels\Components\Light.cs" />
+    <Compile Include="DomainModels\Components\Morph.cs" />
+    <Compile Include="DomainModels\Components\SelfShadow.cs" />
+    <Compile Include="DomainModels\Components\KeyFrame.cs" />
     <Compile Include="Internal\StructWrapper.cs" />
+    <Compile Include="DomainModels\Components\Bone.cs" />
     <Compile Include="DomainModels\Components\BoneInterpolation.cs" />
     <Compile Include="DomainModels\Components\Interpolation.cs" />
+    <Compile Include="DomainModels\Motion.cs" />
     <Compile Include="Internal\IOExtension.cs" />
     <Compile Include="Internal\StructWrappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
