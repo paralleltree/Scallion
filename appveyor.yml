@@ -30,3 +30,9 @@ test_script:
     pip install codecov
 
     &{codecov -f "coverage.xml"}
+deploy:
+- provider: NuGet
+  api_key:
+    secure: fb6UDblafl4cIHQVhvG2PO5erdbxkG7Rv18HagRKkrbcLS6+fmu3OQi1LsD7uZF5
+  on:
+    branch: master
