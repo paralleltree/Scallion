@@ -1,9 +1,10 @@
 # Scallion
-A wrapper library for MikuMikuDance
 
-[![Build status](https://ci.appveyor.com/api/projects/status/lu3jua55lgs0pv05?svg=true)](https://ci.appveyor.com/project/paralleltree/scallion)
+[![Build status](https://ci.appveyor.com/api/projects/status/lu3jua55lgs0pv05?svg=true)](https://ci.appveyor.com/project/paralleltree/Scallion)
 [![NuGet Release](https://img.shields.io/nuget/vpre/Scallion.svg)](https://www.nuget.org/packages/Scallion)
 [![Codecov](https://img.shields.io/codecov/c/github/paralleltree/Scallion.svg)](https://codecov.io/github/paralleltree/Scallion)
+
+A wrapper library for MikuMikuDance
 
 
 ## Requirements
@@ -13,10 +14,10 @@ A wrapper library for MikuMikuDance
 ## Installation
 Now available on [NuGet](https://www.nuget.org/packages/Scallion)
 
-You can execute following command to install:
+Execute the following command in the Package Manager Console:
 
 ```
-PM> Install-Package Scallion -IncludePrerelease
+PM> Install-Package Scallion -Pre
 ```
 
 Or download an archive from [Releases](https://github.com/paralleltree/Scallion/releases).
@@ -36,7 +37,7 @@ var motion = new Motion().Load(@"path\to\motion.vmd");
 
 ## Contributing
 
-Bug reports and pull requests are welcome on [GitHub](https://github.com/paralleltree/spcms).
+Bug reports and pull requests are welcome on [GitHub](https://github.com/paralleltree/Scallion).
 
 ## License
 
