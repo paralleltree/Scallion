@@ -6,11 +6,11 @@ namespace Scallion.DomainModels.Components
 {
     public class SelfShadow
     {
-        public LinkedList<SelfShadowKeyFrame> KeyFrames { get; set; }
+        public List<SelfShadowKeyFrame> KeyFrames { get; set; }
 
         public SelfShadow()
         {
-            KeyFrames = new LinkedList<SelfShadowKeyFrame>();
+            KeyFrames = new List<SelfShadowKeyFrame>();
         }
     }
 

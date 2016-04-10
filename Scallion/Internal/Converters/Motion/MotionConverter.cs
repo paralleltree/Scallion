@@ -15,7 +15,7 @@ namespace Scallion.Internal.Converters.Motion
             obj.Morphs = new MorphConverter().Convert(src.MorphKeyFrames).ToList();
             obj.Camera = new Camera()
             {
-                KeyFrames = new LinkedList<CameraKeyFrame>(src.CameraKeyFrames.Select(p => new CameraKeyFrame()
+                KeyFrames = src.CameraKeyFrames.Select(p => new CameraKeyFrame()
                 {
                     Distance = p.Distance,
                     Position = p.Position,
@@ -24,25 +24,25 @@ namespace Scallion.Internal.Converters.Motion
                     AngleOfView = p.AngleOfView,
                     IsPerspectiveEnabled = p.IsPerspectiveEnabled,
                     KeyFrameIndex = p.KeyFrameIndex
-                }))
+                }).ToList()
             };
             obj.Light = new Light()
             {
-                KeyFrames = new LinkedList<LightKeyFrame>(src.LightKeyFrames.Select(p => new LightKeyFrame()
+                KeyFrames = src.LightKeyFrames.Select(p => new LightKeyFrame()
                 {
                     KeyFrameIndex = p.KeyFrameIndex,
                     Position = p.Position,
                     Color = p.Color
-                }))
+                }).ToList()
             };
             obj.SelfShadow = new SelfShadow()
             {
-                KeyFrames = new LinkedList<SelfShadowKeyFrame>(src.SelfShadowKeyFrames.Select(p => new SelfShadowKeyFrame()
+                KeyFrames = src.SelfShadowKeyFrames.Select(p => new SelfShadowKeyFrame()
                 {
                     KeyFrameIndex = p.KeyFrameIndex,
                     Type = p.Type,
                     Distance = p.Distance
-                }))
+                }).ToList()
             };
             new ModelKeyFrameConverter().Convert(src, obj);
             return obj;

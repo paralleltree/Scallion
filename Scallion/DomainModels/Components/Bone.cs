@@ -9,20 +9,20 @@ namespace Scallion.DomainModels.Components
     public class Bone
     {
         public string Name { get; set; }
-        public LinkedList<BoneKeyFrame> KeyFrames { get; set; }
+        public List<BoneKeyFrame> KeyFrames { get; set; }
 
         public Bone()
         {
-            KeyFrames = new LinkedList<BoneKeyFrame>();
+            KeyFrames = new List<BoneKeyFrame>();
         }
     }
 
     public class IKBone : Bone
     {
-        public LinkedList<IKStateKeyFrame> IKStateKeyFrames { get; set; }
+        public List<IKStateKeyFrame> IKStateKeyFrames { get; set; }
         public IKBone()
         {
-            IKStateKeyFrames = new LinkedList<IKStateKeyFrame>();
+            IKStateKeyFrames = new List<IKStateKeyFrame>();
         }
     }
 

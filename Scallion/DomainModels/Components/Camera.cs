@@ -8,11 +8,11 @@ namespace Scallion.DomainModels.Components
 {
     public class Camera
     {
-        public LinkedList<CameraKeyFrame> KeyFrames { get; set; }
+        public List<CameraKeyFrame> KeyFrames { get; set; }
 
         public Camera()
         {
-            KeyFrames = new LinkedList<CameraKeyFrame>();
+            KeyFrames = new List<CameraKeyFrame>();
         }
     }
 

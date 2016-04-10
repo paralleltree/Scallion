@@ -20,12 +20,12 @@ namespace Scallion.DomainModels
         public Camera Camera { get; set; }
         public Light Light { get; set; }
         public SelfShadow SelfShadow { get; set; }
-        public LinkedList<VisibilityKeyFrame> VisibilityKeyFrames { get; set; }
+        public List<VisibilityKeyFrame> VisibilityKeyFrames { get; set; }
 
 
         public Motion()
         {
-            VisibilityKeyFrames = new LinkedList<VisibilityKeyFrame>();
+            VisibilityKeyFrames = new List<VisibilityKeyFrame>();
         }
 
         public Motion Load(string path)

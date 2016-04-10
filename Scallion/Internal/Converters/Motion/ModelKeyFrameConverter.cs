@@ -35,14 +35,14 @@ namespace Scallion.Internal.Converters.Motion
             {
                 foreach (var ik in item.IKData)
                 {
-                    ikdic[ik.BoneName].IKStateKeyFrames.AddLast(new IKStateKeyFrame()
+                    ikdic[ik.BoneName].IKStateKeyFrames.Add(new IKStateKeyFrame()
                     {
                         KeyFrameIndex = item.KeyFrameIndex,
                         IsIKEnabled = ik.IsEnabled
                     });
                 }
 
-                obj.VisibilityKeyFrames.AddLast(new VisibilityKeyFrame()
+                obj.VisibilityKeyFrames.Add(new VisibilityKeyFrame()
                 {
                     KeyFrameIndex = item.KeyFrameIndex,
                     IsVisible = item.IsVisible

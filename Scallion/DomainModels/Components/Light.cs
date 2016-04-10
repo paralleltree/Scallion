@@ -9,11 +9,11 @@ namespace Scallion.DomainModels.Components
 {
     public class Light
     {
-        public LinkedList<LightKeyFrame> KeyFrames { get; set; }
+        public List<LightKeyFrame> KeyFrames { get; set; }
 
         public Light()
         {
-            KeyFrames = new LinkedList<LightKeyFrame>();
+            KeyFrames = new List<LightKeyFrame>();
         }
     }
 

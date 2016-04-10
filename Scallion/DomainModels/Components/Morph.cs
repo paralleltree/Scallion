@@ -7,11 +7,11 @@ namespace Scallion.DomainModels.Components
     public class Morph
     {
         public string Name { get; set; }
-        public LinkedList<MorphKeyFrame> KeyFrames { get; set; }
+        public List<MorphKeyFrame> KeyFrames { get; set; }
 
         public Morph()
         {
-            KeyFrames = new LinkedList<MorphKeyFrame>();
+            KeyFrames = new List<MorphKeyFrame>();
         }
     }
 
