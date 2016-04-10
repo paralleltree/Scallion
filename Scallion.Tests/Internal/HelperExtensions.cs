@@ -9,14 +9,29 @@ using NUnit.Framework;
 
 namespace Scallion.Tests.Internal
 {
+    /// <summary>
+    /// Provides a set of static methods for test assertions.
+    /// </summary>
     internal static class HelperExtensions
     {
+        /// <summary>
+        /// Inserts a temporary string into the end of this file path.
+        /// </summary>
+        /// <param name="sourcePath">The file path that the <paramref name="suffix"/> is inserted</param>
+        /// <param name="suffix">The string to be inserted. By default, this value is "temp"</param>
+        /// <returns>A new string that the <paramref name="suffix"/> is inserted</returns>
         public static string GetTempPath(this string sourcePath, string suffix = "temp")
         {
             return new Regex(@"(?<=([^\\]+\\)+[^.]*(\.[^.]*)*)(?=(\.[^.\\]+)?$)", RegexOptions.Compiled)
                 .Replace(sourcePath, "-" + suffix, 1);
         }
 
+        /// <summary>
+        /// Asserts properties equality recursively between specified objects.
+        /// The assertion fails if their properties do not equal each other.
+        /// </summary>
+        /// <param name="actual">The object to be compared</param>
+        /// <param name="expected">The object that the test expects</param>
         public static void AssertPropertyValuesAreEquals(this object actual, object expected)
         {
             var properties = expected.GetType().GetProperties().Where(p => p.CanWrite);
@@ -38,6 +53,13 @@ namespace Scallion.Tests.Internal
             }
         }
 
+        /// <summary>
+        /// Asserts an equality of the specified collections.
+        /// The assertion fails if their elements do not equal each other.
+        /// </summary>
+        /// <param name="property">The property having a collection to compare</param>
+        /// <param name="actualList">The list to be compared</param>
+        /// <param name="expectedList">The list that the test expects</param>
         private static void AssertListsAreEquals(this PropertyInfo property, ICollection actualList, ICollection expectedList)
         {
             if (actualList.Count != expectedList.Count)
