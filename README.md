@@ -1,6 +1,6 @@
 # Scallion
 
-[![Build status](https://ci.appveyor.com/api/projects/status/lu3jua55lgs0pv05?svg=true)](https://ci.appveyor.com/project/paralleltree/Scallion)
+[![Build status](https://ci.appveyor.com/api/projects/status/lu3jua55lgs0pv05?svg=true)](https://ci.appveyor.com/project/paralleltree/scallion)
 [![NuGet Release](https://img.shields.io/nuget/vpre/Scallion.svg)](https://www.nuget.org/packages/Scallion)
 [![Codecov](https://img.shields.io/codecov/c/github/paralleltree/Scallion.svg)](https://codecov.io/github/paralleltree/Scallion)
 
@@ -8,10 +8,12 @@ A wrapper library for MikuMikuDance
 
 
 ## Requirements
+
   * .NET Framework 4.6
   * System.Numerics.Vectors
 
 ## Installation
+
 Now available on [NuGet](https://www.nuget.org/packages/Scallion)
 
 Execute the following command in the Package Manager Console:
