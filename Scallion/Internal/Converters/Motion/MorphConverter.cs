@@ -17,7 +17,7 @@ namespace Scallion.Internal.Converters.Motion
                 {
                     Name = item.MorphName
                 });
-                dic[item.MorphName].KeyFrames.AddLast(new MorphKeyFrame()
+                dic[item.MorphName].KeyFrames.Add(new MorphKeyFrame()
                 {
                     KeyFrameIndex = item.KeyFrameIndex,
                     Weight = item.Weight

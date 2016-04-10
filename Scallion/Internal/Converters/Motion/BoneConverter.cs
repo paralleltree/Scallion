@@ -14,7 +14,7 @@ namespace Scallion.Internal.Converters.Motion
             foreach (var item in src)
             {
                 if (!dic.ContainsKey(item.BoneName)) dic.Add(item.BoneName, new Bone() { Name = item.BoneName });
-                dic[item.BoneName].KeyFrames.AddLast(new BoneKeyFrame()
+                dic[item.BoneName].KeyFrames.Add(new BoneKeyFrame()
                 {
                     KeyFrameIndex = item.KeyFrameIndex,
                     Position = item.Position,
