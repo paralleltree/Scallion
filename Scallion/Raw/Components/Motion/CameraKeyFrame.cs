@@ -13,7 +13,7 @@ namespace Scallion.Raw.Components.Motion
         public float Distance { get; set; }
         public Vector3 Position { get; set; }
         public Vector3 Rotation { get; set; }
-        public CameraInterpolation Interpolation { get; set; }
+        public CameraInterpolationImpl Interpolation { get; set; }
         public int AngleOfView { get; set; }
         public bool IsPerspectiveEnabled { get; set; }
 
@@ -36,7 +36,7 @@ namespace Scallion.Raw.Components.Motion
             Position = new Vector3(pos.X, pos.Y, pos.Z);
             var r = archive.Deserialize<Vector3Wrapper>().Value;
             Rotation = new Vector3(-r.X, r.Y, r.Z);
-            Interpolation = archive.Deserialize<CameraInterpolation>();
+            Interpolation = archive.Deserialize<CameraInterpolationImpl>();
             AngleOfView = archive.ReadInt32();
             IsPerspectiveEnabled = archive.ReadByte() == 0;
         }

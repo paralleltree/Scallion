@@ -76,6 +76,7 @@
     <Compile Include="Raw\Components\KeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\BoneInterpolationImpl.cs" />
     <Compile Include="Raw\Components\Motion\BoneKeyFrame.cs" />
+    <Compile Include="Raw\Components\Motion\CameraInterpolationImpl.cs" />
     <Compile Include="Raw\Components\Motion\CameraKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\LightKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\ModelKeyFrame.cs" />

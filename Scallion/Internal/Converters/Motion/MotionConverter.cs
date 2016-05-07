@@ -58,7 +58,7 @@ namespace Scallion.Internal.Converters.Motion
                 Distance = p.Distance,
                 Position = p.Position,
                 Rotation = p.Rotation,
-                Interpolation = new Raw.Components.CameraInterpolation()
+                Interpolation = new Raw.Components.Motion.CameraInterpolationImpl()
                 {
                     X = p.Interpolation.X,
                     Y = p.Interpolation.Y,
