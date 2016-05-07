@@ -27,9 +27,19 @@ namespace Scallion.DomainModels.Components
         /// Initializes a new instance of the <see cref="Interpolation"/> class that defined as linear interpolation.
         /// </summary>
         public Interpolation()
+            : this(new InterpolationParameter(20, 20), new InterpolationParameter(107, 107))
         {
-            First = new InterpolationParameter(20, 20);
-            Second = new InterpolationParameter(107, 107);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Interpolation"/> class with the specified <see cref="InterpolationParameter"/> objects.
+        /// </summary>
+        /// <param name="first">The instance of the <see cref="InterpolationParameter"/> class for <see cref="First"/> property of this interpolation.</param>
+        /// <param name="second">The instance of the <see cref="InterpolationParameter"/> class for <see cref="Second"/> property of this interpolation.</param>
+        public Interpolation(InterpolationParameter first, InterpolationParameter second)
+        {
+            First = first;
+            Second = second;
         }
     }
 
