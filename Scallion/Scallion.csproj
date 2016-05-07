@@ -56,6 +56,7 @@
     <Compile Include="DomainModels\Components\CameraInterpolation.cs" />
     <Compile Include="DomainModels\Components\Light.cs" />
     <Compile Include="DomainModels\Components\Morph.cs" />
+    <Compile Include="DomainModels\Components\Enum.cs" />
     <Compile Include="DomainModels\Components\SelfShadow.cs" />
     <Compile Include="DomainModels\Components\KeyFrame.cs" />
     <Compile Include="Internal\Converters\Motion\BoneConverter.cs" />
@@ -82,6 +83,15 @@
     <Compile Include="Raw\Components\Motion\ModelKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\MorphKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\SelfShadowKeyFrame.cs" />
+    <Compile Include="Raw\Components\Project\BoneInterpolationImpl.cs" />
+    <Compile Include="Raw\Components\Project\BoneReference.cs" />
+    <Compile Include="Raw\Components\Project\CameraInterpolationImpl.cs" />
+    <Compile Include="Raw\Components\Project\LinkableKeyFrame.cs" />
+    <Compile Include="Raw\Components\Project\Media.cs" />
+    <Compile Include="Raw\Components\Project\PanelExpansion.cs" />
+    <Compile Include="Raw\Components\Project\PreviewPanel.cs" />
+    <Compile Include="Raw\Components\Project\RangeSelection.cs" />
+    <Compile Include="Raw\Components\Project\TimelinePanelState.cs" />
     <Compile Include="Raw\Motion.cs" />
   </ItemGroup>
   <ItemGroup>
