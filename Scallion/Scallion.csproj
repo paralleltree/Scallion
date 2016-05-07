@@ -83,16 +83,26 @@
     <Compile Include="Raw\Components\Motion\ModelKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\MorphKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\SelfShadowKeyFrame.cs" />
+    <Compile Include="Raw\Components\Project\Accessory.cs" />
     <Compile Include="Raw\Components\Project\BoneInterpolationImpl.cs" />
+    <Compile Include="Raw\Components\Project\BoneKeyFrame.cs" />
     <Compile Include="Raw\Components\Project\BoneReference.cs" />
+    <Compile Include="Raw\Components\Project\Camera.cs" />
     <Compile Include="Raw\Components\Project\CameraInterpolationImpl.cs" />
+    <Compile Include="Raw\Components\Project\Gravity.cs" />
+    <Compile Include="Raw\Components\Project\Light.cs" />
     <Compile Include="Raw\Components\Project\LinkableKeyFrame.cs" />
     <Compile Include="Raw\Components\Project\Media.cs" />
+    <Compile Include="Raw\Components\Project\Model.cs" />
+    <Compile Include="Raw\Components\Project\ModelKeyFrame.cs" />
+    <Compile Include="Raw\Components\Project\MorphKeyFrame.cs" />
     <Compile Include="Raw\Components\Project\PanelExpansion.cs" />
     <Compile Include="Raw\Components\Project\PreviewPanel.cs" />
     <Compile Include="Raw\Components\Project\RangeSelection.cs" />
+    <Compile Include="Raw\Components\Project\SelfShadow.cs" />
     <Compile Include="Raw\Components\Project\TimelinePanelState.cs" />
     <Compile Include="Raw\Motion.cs" />
+    <Compile Include="Raw\Project.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
