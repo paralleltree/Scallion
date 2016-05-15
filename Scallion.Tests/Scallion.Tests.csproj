@@ -68,6 +68,7 @@
     <Compile Include="UnitTests\IOTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\Raw\MotionTest.cs" />
+    <Compile Include="UnitTests\Raw\ProjectTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scallion\Scallion.csproj">
@@ -83,6 +84,9 @@
     <None Include="Resources\Binaries\Motion_Camera_1.vmd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Binaries\Project_1.pmm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Fixtures\DomainModels\Motion_Bone_1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -93,6 +97,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Fixtures\Raw\Motion_Camera_1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Fixtures\Raw\Project_1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

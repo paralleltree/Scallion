@@ -63,3 +63,4 @@
 #*.RTF   diff=astextplain
 *.vmd filter=lfs diff=lfs merge=lfs -text
 *.json filter=lfs diff=lfs merge=lfs -text
+*.pmm filter=lfs diff=lfs merge=lfs -text
