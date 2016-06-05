@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\HelperExtensions.cs" />
+    <Compile Include="UnitTests\Core\MoSerializerTest.cs" />
     <Compile Include="UnitTests\DomainModels\MotionTest.cs" />
     <Compile Include="UnitTests\IOTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

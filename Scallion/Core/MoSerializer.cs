@@ -80,7 +80,8 @@ namespace Scallion.Core
         public void WriteByteString(string value, int bytesCount)
         {
             var data = new byte[bytesCount];
-            FileEncoding.GetBytes(value).CopyTo(data, 0);
+            var arr = FileEncoding.GetBytes(value);
+            Array.Copy(arr, data, Math.Min(bytesCount, arr.Length));
             _stream.Write(data);
         }
 
