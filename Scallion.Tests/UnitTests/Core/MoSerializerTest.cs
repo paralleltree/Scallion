@@ -9,7 +9,7 @@ using Scallion.DomainModels.Components;
 namespace Scallion.Tests.UnitTests.Core
 {
     [TestFixture]
-    internal class MoDeserializerTest
+    internal class MoSerializerTest
     {
         [Test]
         public void WriteLongStringTest()
