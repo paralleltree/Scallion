@@ -48,3 +48,5 @@ deploy:
   draft: true
   on:
     branch: master
+cache:
+- packages -> **\packages.config
