@@ -19,7 +19,7 @@ Now available on [NuGet](https://www.nuget.org/packages/Scallion)
 Execute the following command in the Package Manager Console:
 
 ```
-PM> Install-Package Scallion -Pre
+PM> Install-Package Scallion
 ```
 
 Or download an archive from [Releases](https://github.com/paralleltree/Scallion/releases).
