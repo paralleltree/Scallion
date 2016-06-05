@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("3934e015-89f5-4214-80df-71b57f62c2cd")]
 
-[assembly: AssemblyVersion("0.9.0.1")]
-[assembly: AssemblyInformationalVersion("0.9.0")]
+[assembly: AssemblyVersion("0.9.1.0")]
+[assembly: AssemblyInformationalVersion("0.9.1")]
 
 // Exposes internal components to the testing project.
 [assembly: InternalsVisibleTo("Scallion.Tests")]
