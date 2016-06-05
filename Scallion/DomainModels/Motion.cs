@@ -62,6 +62,11 @@ namespace Scallion.DomainModels
         /// </summary>
         public Motion()
         {
+            Bones = new List<Bone>();
+            Morphs = new List<Morph>();
+            Camera = new Camera();
+            Light = new Light();
+            SelfShadow = new SelfShadow();
             VisibilityKeyFrames = new List<VisibilityKeyFrame>();
         }
 
