@@ -81,7 +81,9 @@
     <Compile Include="Raw\Components\Motion\ModelKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\MorphKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\SelfShadowKeyFrame.cs" />
+    <Compile Include="Raw\Components\Pose\Bone.cs" />
     <Compile Include="Raw\Motion.cs" />
+    <Compile Include="Raw\Pose.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
