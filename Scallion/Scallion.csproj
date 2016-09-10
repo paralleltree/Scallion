@@ -58,6 +58,7 @@
     <Compile Include="DomainModels\Components\Morph.cs" />
     <Compile Include="DomainModels\Components\SelfShadow.cs" />
     <Compile Include="DomainModels\Components\KeyFrame.cs" />
+    <Compile Include="DomainModels\Pose.cs" />
     <Compile Include="Internal\Converters\Motion\BoneConverter.cs" />
     <Compile Include="Internal\Converters\Converter.cs" />
     <Compile Include="Internal\Converters\Motion\ModelKeyFrameConverter.cs" />
