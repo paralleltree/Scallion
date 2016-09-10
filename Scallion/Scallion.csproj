@@ -107,6 +107,7 @@
     <Compile Include="Raw\Components\Motion\ModelKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\MorphKeyFrame.cs" />
     <Compile Include="Raw\Components\Motion\SelfShadowKeyFrame.cs" />
+    <Compile Include="Raw\Components\Pose\Bone.cs" />
     <Compile Include="Raw\Components\Project\Accessory.cs" />
     <Compile Include="Raw\Components\Project\BoneInterpolationImpl.cs" />
     <Compile Include="Raw\Components\Project\BoneKeyFrame.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Raw\Components\Project\SelfShadow.cs" />
     <Compile Include="Raw\Components\Project\TimelinePanelState.cs" />
     <Compile Include="Raw\Motion.cs" />
+    <Compile Include="Raw\Pose.cs" />
     <Compile Include="Raw\Project.cs" />
   </ItemGroup>
   <ItemGroup>
