@@ -107,4 +107,25 @@ namespace Scallion.DomainModels.Components
         /// </summary>
         Bone
     }
+
+    /// <summary>
+    /// Specifies a value of limited fps.
+    /// </summary>
+    public enum FpsLimit
+    {
+        /// <summary>
+        /// No limits.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Limits fps to 30.
+        /// </summary>
+        Thirty,
+
+        /// <summary>
+        /// Limits fps to 60.
+        /// </summary>
+        Sixty
+    }
 }
