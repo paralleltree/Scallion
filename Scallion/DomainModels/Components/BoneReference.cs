@@ -16,6 +16,7 @@ namespace Scallion.DomainModels.Components
 
         /// <summary>
         /// Gets the parent bone of <see cref="TargetModel"/>.
+        /// The null value represents the root of model.
         /// </summary>
         public Bone TargetBone { get; }
 

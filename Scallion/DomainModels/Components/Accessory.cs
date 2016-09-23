@@ -41,12 +41,18 @@ namespace Scallion.DomainModels.Components
         /// </summary>
         public List<AccessoryKeyFrame> KeyFrames { get; set; }
 
+        /// <summary>
+        /// Gets or sets a instance of <see cref="AccessoryState"/> indicating current accessory status.
+        /// </summary>
+        public AccessoryState CurrentStatus { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Accessory"/> class.
         /// </summary>
         public Accessory()
         {
+            CurrentStatus = new AccessoryState();
             KeyFrames = new List<AccessoryKeyFrame>();
         }
     }
@@ -55,6 +61,47 @@ namespace Scallion.DomainModels.Components
     /// Represents a key frame for <see cref="Accessory"/>.
     /// </summary>
     public class AccessoryKeyFrame : KeyFrame
+    {
+        /// <summary>
+        /// Gets or sets the opacity factor applied to the accessory.
+        /// </summary>
+        public float Opacity { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the accessory is visible.
+        /// </summary>
+        public bool IsVisible { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reference to the external parent bone.
+        /// </summary>
+        public BoneReference ExternalParent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the position of the accessory.
+        /// </summary>
+        public Vector3 Position { get; set; }
+
+        /// <summary>
+        /// Gets or sets the angle of rotation.
+        /// </summary>
+        public Vector3 Rotation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the scale factor applied to the accessory.
+        /// </summary>
+        public float Scale { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the shadowing is enabled.
+        /// </summary>
+        public bool IsShadowEnabled { get; set; }
+    }
+
+    /// <summary>
+    /// Represents the current accessory status.
+    /// </summary>
+    public class AccessoryState
     {
         /// <summary>
         /// Gets or sets the opacity factor applied to the accessory.

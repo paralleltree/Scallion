@@ -53,7 +53,7 @@ namespace Scallion.DomainModels.Components
         public List<Morph> Morphs { get; set; }
 
         /// <summary>
-        /// Gets or sets the index indicating the order of rendering.
+        /// Gets or sets the index indicating the order of rendering starting from 1.
         /// </summary>
         public int RenderingOrder { get; set; }
 
@@ -96,6 +96,11 @@ namespace Scallion.DomainModels.Components
         /// Gets or sets an instance of the <see cref="ModelTimelinePanel"/> class.
         /// </summary>
         public ModelTimelinePanel TimelinePanel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of bone groups expansion status.
+        /// </summary>
+        public List<bool> BoneGroupsExpansion { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Model"/> class.

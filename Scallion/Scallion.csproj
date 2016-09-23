@@ -66,6 +66,7 @@
     <Compile Include="DomainModels\Components\SelfShadow.cs" />
     <Compile Include="DomainModels\Components\KeyFrame.cs" />
     <Compile Include="DomainModels\Components\View.cs" />
+    <Compile Include="DomainModels\Project.cs" />
     <Compile Include="Internal\Converters\Motion\BoneConverter.cs" />
     <Compile Include="Internal\Converters\Converter.cs" />
     <Compile Include="Internal\Converters\Motion\ModelKeyFrameConverter.cs" />

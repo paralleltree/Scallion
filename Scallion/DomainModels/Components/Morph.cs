@@ -19,6 +19,8 @@ namespace Scallion.DomainModels.Components
         /// </summary>
         public List<MorphKeyFrame> KeyFrames { get; set; }
 
+        public MorphState CurrentStatus { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Morph"/> class.
         /// </summary>
@@ -32,6 +34,17 @@ namespace Scallion.DomainModels.Components
     /// Represents a key frame for a morph.
     /// </summary>
     public class MorphKeyFrame : KeyFrame
+    {
+        /// <summary>
+        /// Gets or sets a value of the morph in this key frame.
+        /// </summary>
+        public float Weight { get; set; }
+    }
+
+    /// <summary>
+    /// Represents the current morph status.
+    /// </summary>
+    public class MorphState
     {
         /// <summary>
         /// Gets or sets a value of the morph in this key frame.

@@ -14,6 +14,11 @@ namespace Scallion.DomainModels.Components
         /// Gets or sets the index of this key frame.
         /// </summary>
         public int KeyFrameIndex { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the key frame is selected.
+        /// </summary>
+        public bool IsSelected { get; set; }
     }
 
     /// <summary>
@@ -25,5 +30,16 @@ namespace Scallion.DomainModels.Components
         /// Gets or sets a value indicating whether the object is visible.
         /// </summary>
         public bool IsVisible { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a key frame that indicates the external parent bone.
+    /// </summary>
+    public class ExternalParentKeyFrame : KeyFrame
+    {
+        /// <summary>
+        /// Gets or sets the reference to the external parent bone.
+        /// </summary>
+        public BoneReference Reference { get; set; }
     }
 }

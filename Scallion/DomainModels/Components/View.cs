@@ -52,8 +52,13 @@ namespace Scallion.DomainModels.Components
         public bool IsSurfaceShadowTransparent { get; set; }
 
         /// <summary>
-        /// Gets or sets the first index of the accessories being rendered after models.
+        /// Gets or sets the first index(order) of the accessories being rendered after models.
         /// </summary>
         public int AccessoryRenderedAfterModelIndex { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mode of screen capturing.
+        /// </summary>
+        public ScreenCaptureMode ScreenCapturingMode { get; set; }
     }
 }

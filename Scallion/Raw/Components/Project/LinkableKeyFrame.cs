@@ -10,7 +10,7 @@ namespace Scallion.Raw.Components.Project
     /// Represents a key frame used in MMD Project File.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal abstract class LinkableKeyFrame<T> : KeyFrame where T : MMDObject, new()
+    internal abstract class LinkableKeyFrame<T> : KeyFrame, ILinkableKeyFrame where T : MMDObject, new()
     {
         public int DataIndex { get; set; }
         public int PreviousDataIndex { get; set; }
@@ -74,5 +74,15 @@ namespace Scallion.Raw.Components.Project
         {
             Value = archive.Deserialize<T>();
         }
+    }
+
+    /// <summary>
+    /// Provides structures for <see cref="LinkableKeyFrame{T}"/>
+    /// </summary>
+    internal interface ILinkableKeyFrame
+    {
+        int DataIndex { get; set; }
+        int PreviousDataIndex { get; set; }
+        int NextDataIndex { get; set; }
     }
 }
