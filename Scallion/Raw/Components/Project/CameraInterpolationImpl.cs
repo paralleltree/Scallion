@@ -63,5 +63,17 @@ namespace Scallion.Raw.Components.Project
             V.Second = new InterpolationParameter(archive.ReadByte(), archive.ReadByte());
         }
 
+        public static implicit operator CameraInterpolationImpl(DomainModels.Components.CameraInterpolation obj)
+        {
+            return new CameraInterpolationImpl()
+            {
+                X = obj.X,
+                Y = obj.Y,
+                Z = obj.Z,
+                D = obj.D,
+                R = obj.R,
+                V = obj.V
+            };
+        }
     }
 }

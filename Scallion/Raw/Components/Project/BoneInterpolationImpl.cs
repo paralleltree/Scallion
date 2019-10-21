@@ -37,5 +37,16 @@ namespace Scallion.Raw.Components.Project
             Z = new Interpolation(new InterpolationParameter(archive.ReadByte(), archive.ReadByte()), new InterpolationParameter(archive.ReadByte(), archive.ReadByte()));
             R = new Interpolation(new InterpolationParameter(archive.ReadByte(), archive.ReadByte()), new InterpolationParameter(archive.ReadByte(), archive.ReadByte()));
         }
+
+        public static implicit operator BoneInterpolationImpl(DomainModels.Components.BoneInterpolation obj)
+        {
+            return new BoneInterpolationImpl()
+            {
+                X = obj.X,
+                Y = obj.Y,
+                Z = obj.Z,
+                R = obj.R
+            };
+        }
     }
 }

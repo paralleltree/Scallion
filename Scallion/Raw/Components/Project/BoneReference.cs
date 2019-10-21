@@ -8,6 +8,8 @@ namespace Scallion.Raw.Components.Project
 {
     internal struct BoneReference
     {
+        public readonly static BoneReference Empty = new BoneReference(-1, 0);
+
         public int ModelIndex { get; set; }
         public int BoneIndex { get; set; }
 

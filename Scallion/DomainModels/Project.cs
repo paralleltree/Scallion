@@ -92,7 +92,7 @@ namespace Scallion.DomainModels
         /// </exception>
         public Project Load(string path)
         {
-            throw new NotImplementedException();
+            return new ProjectConverter().Convert(new Raw.Project().Load(path), this);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Scallion.DomainModels
         /// <param name="path">The file path to save this project</param>
         public void Save(string path)
         {
-            throw new NotImplementedException();
+            new ProjectConverter().ConvertBack(this, new Raw.Project()).Save(path);
         }
     }
 }
