@@ -40,7 +40,9 @@ namespace Scallion.Tests.Internal
                 object expectedValue = property.GetValue(expected, null);
                 object actualValue = property.GetValue(actual, null);
 
-                if (actualValue is ICollection)
+                if (actualValue == null)
+                    Assert.Null(expectedValue);
+                else if (actualValue is ICollection)
                     // Comparison for elements contained in the list
                     property.AssertListsAreEquals((ICollection)actualValue, (ICollection)expectedValue);
                 else if (!actualValue.GetType().IsValueType && !actualValue.GetType().Namespace.StartsWith("System"))
