@@ -56,24 +56,40 @@ namespace Scallion.Internal.Converters.Motion
         public Raw.Motion ConvertBack(DomainModels.Motion src, Raw.Motion obj)
         {
             var ikbones = src.IKBones.ToList();
-            var visibilities = src.VisibilityKeyFrames.OrderBy(p => p.KeyFrameIndex).ToList();
+            var ikKeyFrameNodes = ikbones.Select(p => new LinkedList<IKStateKeyFrame>(p.IKStateKeyFrames.OrderBy(q => q.KeyFrameIndex)).First).ToList();
+            var visibilitiesNode = new LinkedList<VisibilityKeyFrame>(src.VisibilityKeyFrames.OrderBy(p => p.KeyFrameIndex)).First;
+            var keyframeIndices = new HashSet<int>();
+
+            foreach (int idx in src.IKBones.SelectMany(p => p.IKStateKeyFrames.Select(q => q.KeyFrameIndex)))
+                keyframeIndices.Add(idx);
+            foreach (int idx in src.VisibilityKeyFrames.Select(p => p.KeyFrameIndex))
+                keyframeIndices.Add(idx);
 
             // Merge model visibilities and IK bone states into a key frame by indices
-            obj.ModelKeyFrames = src.IKBones.SelectMany(p => p.IKStateKeyFrames.Select(q => q.KeyFrameIndex))
-                .Concat(visibilities.Select(p => p.KeyFrameIndex))
-                .OrderBy(p => p)
-                .Distinct()
-                .Select(p => new Raw.Components.Motion.ModelKeyFrame()
+            var list = new List<Raw.Components.Motion.ModelKeyFrame>(keyframeIndices.Count);
+            foreach (int idx in keyframeIndices.OrderBy(p => p))
+            {
+                for (int i = 0; i < ikKeyFrameNodes.Count; i++)
                 {
-                    KeyFrameIndex = p,
-                    IKData = ikbones.Select(q => new Raw.Components.Motion.IKBoneData()
+                    if (ikKeyFrameNodes[i].Next != null && idx >= ikKeyFrameNodes[i].Next.Value.KeyFrameIndex)
+                        ikKeyFrameNodes[i] = ikKeyFrameNodes[i].Next;
+                }
+                if (visibilitiesNode.Next != null && idx >= visibilitiesNode.Next.Value.KeyFrameIndex)
+                    visibilitiesNode = visibilitiesNode.Next;
+
+                list.Add(new Raw.Components.Motion.ModelKeyFrame()
+                {
+                    KeyFrameIndex = idx,
+                    IKData = ikKeyFrameNodes.Select((p, i) => new Raw.Components.Motion.IKBoneData()
                     {
-                        BoneName = q.Name,
-                        IsEnabled = (q.IKStateKeyFrames.LastOrDefault(r => r.KeyFrameIndex <= p) ?? q.IKStateKeyFrames.First()).IsIKEnabled
+                        BoneName = ikbones[i].Name,
+                        IsEnabled = ikKeyFrameNodes[i].Value.IsIKEnabled
                     }).ToList(),
-                    IsVisible = (visibilities.LastOrDefault(q => q.KeyFrameIndex <= p) ?? visibilities.First()).IsVisible
-                })
-                .ToList();
+                    IsVisible = visibilitiesNode.Value.IsVisible
+                });
+            }
+
+            obj.ModelKeyFrames = list;
             return obj;
         }
     }
