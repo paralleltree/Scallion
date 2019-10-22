@@ -60,9 +60,12 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConverterTests\Project\CameraTest.cs" />
     <Compile Include="Internal\HelperExtensions.cs" />
+    <Compile Include="Internal\NumericsExtensions.cs" />
     <Compile Include="UnitTests\Core\MoSerializerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

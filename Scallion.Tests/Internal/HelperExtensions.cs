@@ -75,6 +75,13 @@ namespace Scallion.Tests.Internal
                 actual.Current.AssertPropertyValuesAreEquals(expected.Current);
             }
         }
+
+        public static void AssertEquals(this System.Numerics.Vector3 expected, System.Numerics.Vector3 actual, float delta)
+        {
+            Assert.AreEqual(expected.X, actual.X, delta);
+            Assert.AreEqual(expected.Y, actual.Y, delta);
+            Assert.AreEqual(expected.Z, actual.Z, delta);
+        }
     }
 
     [TestFixture]
