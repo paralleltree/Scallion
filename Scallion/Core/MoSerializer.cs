@@ -8,7 +8,7 @@ namespace Scallion.Core
     /// <summary>
     /// Represents a serializer for <see cref="MMDObject"/>.
     /// </summary>
-    internal class MoSerializer : MoIO
+    internal class MoSerializer : MoIO, IDisposable
     {
         private BinaryWriter _stream;
 
@@ -104,6 +104,11 @@ namespace Scallion.Core
             byte[] data = FileEncoding.GetBytes(value);
             _stream.Write((byte)data.Length);
             _stream.Write(data);
+        }
+
+        public void Dispose()
+        {
+            _stream.Dispose();
         }
     }
 }

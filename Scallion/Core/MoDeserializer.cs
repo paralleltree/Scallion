@@ -8,7 +8,7 @@ namespace Scallion.Core
     /// <summary>
     /// Represents a deserializer for <see cref="MMDObject"/>.
     /// </summary>
-    internal class MoDeserializer : MoIO
+    internal class MoDeserializer : MoIO, IDisposable
     {
         private BinaryReader _stream;
 
@@ -127,6 +127,11 @@ namespace Scallion.Core
         {
             byte length = _stream.ReadByte();
             return ReadByteString(length);
+        }
+
+        public void Dispose()
+        {
+            _stream.Dispose();
         }
     }
 }
