@@ -26,8 +26,6 @@ Or download an archive from [Releases](https://github.com/paralleltree/Scallion/
 
 ## Usage
 
-This library supports only MMD Motion File for now.
-
 ```csharp
 // using Scallion.DomainModels;
 
@@ -35,6 +33,9 @@ var motion = new Motion().Load(@"path\to\motion.vmd");
 // motion.Bones...
 // motion.Morphs...
 
+var project = new Project().Load(@"path\to\project.pmm");
+// project.Camera...
+// project.Models...
 ```
 
 ## Contributing
