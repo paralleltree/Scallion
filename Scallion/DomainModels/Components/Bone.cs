@@ -24,7 +24,7 @@ namespace Scallion.DomainModels.Components
         /// <summary>
         /// Gets or sets a instance of <see cref="BoneState"/> indicating current bone status.
         /// </summary>
-        public BoneState CurrentStatus { get; set; }
+        public CurrentBoneState CurrentStatus { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of the <see cref="ExternalParentKeyFrame"/> class.
@@ -36,7 +36,7 @@ namespace Scallion.DomainModels.Components
         /// </summary>
         public Bone()
         {
-            CurrentStatus = new BoneState();
+            CurrentStatus = new CurrentBoneState();
             KeyFrames = new List<BoneKeyFrame>();
             ExternalParentKeyFrames = new List<ExternalParentKeyFrame>();
         }
@@ -55,14 +55,14 @@ namespace Scallion.DomainModels.Components
         /// <summary>
         /// Gets or sets a collection of the <see cref="IKStateKeyFrame"/> class.
         /// </summary>
-        public List<IKStateKeyFrame> IKStateKeyFrames { get; set; }
+        public List<IKBoneKeyFrame> IKStateKeyFrames { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IKBone"/> class.
         /// </summary>
         public IKBone()
         {
-            IKStateKeyFrames = new List<IKStateKeyFrame>();
+            IKStateKeyFrames = new List<IKBoneKeyFrame>();
         }
 
         /// <summary>
@@ -77,10 +77,14 @@ namespace Scallion.DomainModels.Components
         }
     }
 
+    public class BoneKeyFrame : KeyFrame<BoneState>
+    {
+    }
+
     /// <summary>
-    /// Represents a key frame for a bone.
+    /// Represents a state for a bone.
     /// </summary>
-    public class BoneKeyFrame : KeyFrame
+    public class BoneState
     {
         /// <summary>
         /// Gets or sets a position of the bone in this key frame.
@@ -103,63 +107,39 @@ namespace Scallion.DomainModels.Components
         public bool IsPhysicsEnabled { get; set; }
 
         /// <summary>
+        /// Gets or sets the reference to the external parent bone.
+        /// </summary>
+        public BoneReference ExternalParent { get; set; }
+
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BoneKeyFrame"/> class.
         /// </summary>
-        public BoneKeyFrame()
+        public BoneState()
         {
             Interpolation = new BoneInterpolation();
         }
     }
 
-    /// <summary>
-    /// Represents a key frame indicating whether IK of the bone is enabled.
-    /// </summary>
-    public class IKStateKeyFrame : KeyFrame
+    public class CurrentBoneState : BoneState
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether IK of the bone is enabled.
-        /// </summary>
-        public bool IsIKEnabled { get; set; }
-    }
-
-    /// <summary>
-    /// Represents the current bone status.
-    /// </summary>
-    public class BoneState
-    {
-        /// <summary>
-        /// Gets or sets the position of the accessory.
-        /// </summary>
-        public Vector3 Position { get; set; }
-
-        /// <summary>
-        /// Gets or sets the quaternion of the accessory.
-        /// </summary>
-        public Quaternion Quaternion { get; set; }
-
         /// <summary>
         /// Gets or sets a value indicating whether the bone state is saved.
         /// </summary>
         public bool IsSaved { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the physics calculation for the bone is enabled.
-        /// </summary>
-        public bool IsPhysicsEnabled { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether the bone is selected on the timeline panel.
         /// </summary>
         public bool IsRowSelected { get; set; }
+    }
 
-        /// <summary>
-        /// Gets or sets the reference for external parent bone.
-        /// </summary>
-        public BoneReference ExternalParent { get; set; }
+    public class IKBoneKeyFrame : KeyFrame<IKBoneState>
+    {
     }
 
     /// <summary>
-    /// Represents the current IK bone status.
+    /// Represents the IK bone state.
     /// </summary>
     public class IKBoneState
     {

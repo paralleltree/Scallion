@@ -13,13 +13,16 @@ namespace Scallion.Internal.Converters.Project
             obj.KeyFrames = src.KeyFrames.Extract(src.InitialKeyFrame).Select(p => new AccessoryKeyFrame()
             {
                 KeyFrameIndex = p.KeyFrameIndex,
-                Opacity = p.Value.Opacity,
-                IsVisible = p.Value.IsVisible,
-                IsShadowEnabled = p.Value.IsShadowEnabled,
-                // ExternalParent: will be assgined in top level.
-                Position = p.Value.Position,
-                Rotation = p.Value.Rotation,
-                Scale = p.Value.Scale
+                Value = new AccessoryState()
+                {
+                    Opacity = p.Value.Opacity,
+                    IsVisible = p.Value.IsVisible,
+                    IsShadowEnabled = p.Value.IsShadowEnabled,
+                    // ExternalParent: will be assgined in top level.
+                    Position = p.Value.Position,
+                    Rotation = p.Value.Rotation,
+                    Scale = p.Value.Scale
+                }
             }).ToList();
 
             return obj;
@@ -32,13 +35,13 @@ namespace Scallion.Internal.Converters.Project
                 KeyFrameIndex = p.KeyFrameIndex,
                 Value = new Raw.Components.Project.AccessoryState()
                 {
-                    Opacity = p.Opacity,
-                    IsVisible = p.IsVisible,
-                    IsShadowEnabled = p.IsShadowEnabled,
+                    Opacity = p.Value.Opacity,
+                    IsVisible = p.Value.IsVisible,
+                    IsShadowEnabled = p.Value.IsShadowEnabled,
                     // ExternalParent: will be assign in top level.
-                    Position = p.Position,
-                    Rotation = p.Rotation,
-                    Scale = p.Scale
+                    Position = p.Value.Position,
+                    Rotation = p.Value.Rotation,
+                    Scale = p.Value.Scale
                 },
                 IsSelected = p.IsSelected
             }).ToList();

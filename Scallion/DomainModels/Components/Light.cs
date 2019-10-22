@@ -32,31 +32,22 @@ namespace Scallion.DomainModels.Components
         }
     }
 
-    /// <summary>
-    /// Represents a key frame for a light configuration.
-    /// </summary>
-    public class LightKeyFrame : KeyFrame
+    public class LightKeyFrame : KeyFrame<LightState>
     {
-        /// <summary>
-        /// Gets or sets a position of the light in this key frame.
-        /// </summary>
-        public Vector3 Position { get; set; }
-
-        /// <summary>
-        /// Gets or sets a color of the light in this key frame.
-        /// </summary>
-        public Color Color { get; set; }
     }
 
+    /// <summary>
+    /// Represents a state for light configuration.
+    /// </summary>
     public class LightState
     {
         /// <summary>
-        /// Gets or sets a position of the light in this key frame.
+        /// Gets or sets a position of the light.
         /// </summary>
         public Vector3 Position { get; set; }
 
         /// <summary>
-        /// Gets or sets a color of the light in this key frame.
+        /// Gets or sets a color of the light.
         /// </summary>
         public Color Color { get; set; }
     }

@@ -21,8 +21,11 @@ namespace Scallion.Internal.Converters.Project
                 KeyFrames = src.KeyFrames.Extract(src.InitialKeyFrame).Select(p => new LightKeyFrame()
                 {
                     KeyFrameIndex = p.KeyFrameIndex,
-                    Position = p.Value.Position,
-                    Color = p.Value.Color,
+                    Value = new LightState()
+                    {
+                        Position = p.Value.Position,
+                        Color = p.Value.Color,
+                    },
                     IsSelected = p.IsSelected
                 }).ToList()
             };
@@ -35,8 +38,8 @@ namespace Scallion.Internal.Converters.Project
             {
                 Value = new Raw.Components.Project.LightState()
                 {
-                    Position = p.Position,
-                    Color = p.Color
+                    Position = p.Value.Position,
+                    Color = p.Value.Color
                 },
                 IsSelected = p.IsSelected
             }).ToList().Pack(1);
@@ -54,8 +57,8 @@ namespace Scallion.Internal.Converters.Project
                     NextDataIndex = frames.Count > 0 ? 1 : 0,
                     Value = new Raw.Components.Project.LightState()
                     {
-                        Position = init.Position,
-                        Color = init.Color
+                        Position = init.Value.Position,
+                        Color = init.Value.Color
                     },
                     IsSelected = init.IsSelected
                 },

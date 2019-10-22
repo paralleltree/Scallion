@@ -8,7 +8,7 @@ namespace Scallion.DomainModels.Components
     /// Represents a key frame used for transition.
     /// This class is abstract.
     /// </summary>
-    public abstract class KeyFrame
+    public class KeyFrame<T> where T : new()
     {
         /// <summary>
         /// Gets or sets the index of this key frame.
@@ -19,12 +19,23 @@ namespace Scallion.DomainModels.Components
         /// Gets or sets a value indicating whether the key frame is selected.
         /// </summary>
         public bool IsSelected { get; set; }
+
+        public T Value { get; set; }
+
+        public KeyFrame()
+        {
+            Value = new T();
+        }
+    }
+
+    public class VisibilityKeyFrame : KeyFrame<VisibilityState>
+    {
     }
 
     /// <summary>
     /// Represents a key frame that indicates whether a object is visible.
     /// </summary>
-    public class VisibilityKeyFrame : KeyFrame
+    public class VisibilityState
     {
         /// <summary>
         /// Gets or sets a value indicating whether the object is visible.
@@ -32,10 +43,14 @@ namespace Scallion.DomainModels.Components
         public bool IsVisible { get; set; }
     }
 
+    public class ExternalParentKeyFrame : KeyFrame<ExternalParentState>
+    {
+    }
+
     /// <summary>
     /// Represents a key frame that indicates the external parent bone.
     /// </summary>
-    public class ExternalParentKeyFrame : KeyFrame
+    public class ExternalParentState
     {
         /// <summary>
         /// Gets or sets the reference to the external parent bone.

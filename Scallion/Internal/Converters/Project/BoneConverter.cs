@@ -19,13 +19,16 @@ namespace Scallion.Internal.Converters.Project
                     KeyFrames = src.BoneKeyFrames.Extract(src.InitialBoneKeyFrames[i]).Select(p => new BoneKeyFrame()
                     {
                         KeyFrameIndex = p.KeyFrameIndex,
-                        Position = p.Value.Position,
-                        Quaternion = p.Value.Quaternion,
-                        Interpolation = p.Value.Interpolation,
-                        IsPhysicsEnabled = p.Value.IsPhysicsEnabled,
+                        Value = new BoneState()
+                        {
+                            Position = p.Value.Position,
+                            Quaternion = p.Value.Quaternion,
+                            Interpolation = p.Value.Interpolation,
+                            IsPhysicsEnabled = p.Value.IsPhysicsEnabled,
+                        },
                         IsSelected = p.IsSelected
                     }).ToList(),
-                    CurrentStatus = new BoneState()
+                    CurrentStatus = new CurrentBoneState()
                     {
                         Position = src.CurrentBoneStatuses[i].Position,
                         Quaternion = src.CurrentBoneStatuses[i].Quaternion,
@@ -66,10 +69,10 @@ namespace Scallion.Internal.Converters.Project
                     KeyFrameIndex = p.KeyFrameIndex,
                     Value = new Raw.Components.Project.BoneState()
                     {
-                        Position = p.Position,
-                        Quaternion = p.Quaternion,
-                        Interpolation = p.Interpolation,
-                        IsPhysicsEnabled = p.IsPhysicsEnabled
+                        Position = p.Value.Position,
+                        Quaternion = p.Value.Quaternion,
+                        Interpolation = p.Value.Interpolation,
+                        IsPhysicsEnabled = p.Value.IsPhysicsEnabled
                     },
                     IsSelected = p.IsSelected
                 }).ToList();

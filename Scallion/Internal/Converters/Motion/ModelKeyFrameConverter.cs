@@ -35,17 +35,17 @@ namespace Scallion.Internal.Converters.Motion
             {
                 foreach (var ik in item.IKData)
                 {
-                    ikdic[ik.BoneName].IKStateKeyFrames.Add(new IKStateKeyFrame()
+                    ikdic[ik.BoneName].IKStateKeyFrames.Add(new IKBoneKeyFrame()
                     {
                         KeyFrameIndex = item.KeyFrameIndex,
-                        IsIKEnabled = ik.IsEnabled
+                        Value = new IKBoneState() { IsIKEnabled = ik.IsEnabled }
                     });
                 }
 
                 obj.VisibilityKeyFrames.Add(new VisibilityKeyFrame()
                 {
                     KeyFrameIndex = item.KeyFrameIndex,
-                    IsVisible = item.IsVisible
+                    Value = new VisibilityState() { IsVisible = item.IsVisible }
                 });
             }
 
@@ -56,7 +56,7 @@ namespace Scallion.Internal.Converters.Motion
         public Raw.Motion ConvertBack(DomainModels.Motion src, Raw.Motion obj)
         {
             var ikbones = src.IKBones.ToList();
-            var ikKeyFrameNodes = ikbones.Select(p => new LinkedList<IKStateKeyFrame>(p.IKStateKeyFrames.OrderBy(q => q.KeyFrameIndex)).First).ToList();
+            var ikKeyFrameNodes = ikbones.Select(p => new LinkedList<IKBoneKeyFrame>(p.IKStateKeyFrames.OrderBy(q => q.KeyFrameIndex)).First).ToList();
             var visibilitiesNode = new LinkedList<VisibilityKeyFrame>(src.VisibilityKeyFrames.OrderBy(p => p.KeyFrameIndex)).First;
             var keyframeIndices = new HashSet<int>();
 
@@ -83,9 +83,9 @@ namespace Scallion.Internal.Converters.Motion
                     IKData = ikKeyFrameNodes.Select((p, i) => new Raw.Components.Motion.IKBoneData()
                     {
                         BoneName = ikbones[i].Name,
-                        IsEnabled = ikKeyFrameNodes[i].Value.IsIKEnabled
+                        IsEnabled = ikKeyFrameNodes[i].Value.Value.IsIKEnabled
                     }).ToList(),
-                    IsVisible = visibilitiesNode.Value.IsVisible
+                    IsVisible = visibilitiesNode.Value.Value.IsVisible
                 });
             }
 

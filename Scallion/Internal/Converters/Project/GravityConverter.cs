@@ -22,10 +22,13 @@ namespace Scallion.Internal.Converters.Project
                 KeyFrames = src.KeyFrames.Extract(src.InitialKeyFrame).Select(p => new GravityKeyFrame()
                 {
                     KeyFrameIndex = p.KeyFrameIndex,
-                    Acceleration = p.Value.Acceleration,
-                    NoiseAmount = p.Value.NoiseAmount,
-                    Direction = p.Value.Direction,
-                    IsNoiseEnabled = p.Value.IsNoiseEnabled,
+                    Value = new GravityState()
+                    {
+                        Acceleration = p.Value.Acceleration,
+                        NoiseAmount = p.Value.NoiseAmount,
+                        Direction = p.Value.Direction,
+                        IsNoiseEnabled = p.Value.IsNoiseEnabled,
+                    },
                     IsSelected = p.IsSelected
                 }).ToList()
             };
@@ -38,10 +41,10 @@ namespace Scallion.Internal.Converters.Project
                 KeyFrameIndex = p.KeyFrameIndex,
                 Value = new Raw.Components.Project.GravityState()
                 {
-                    Acceleration = p.Acceleration,
-                    NoiseAmount = p.NoiseAmount,
-                    Direction = p.Direction,
-                    IsNoiseEnabled = p.IsNoiseEnabled
+                    Acceleration = p.Value.Acceleration,
+                    NoiseAmount = p.Value.NoiseAmount,
+                    Direction = p.Value.Direction,
+                    IsNoiseEnabled = p.Value.IsNoiseEnabled
                 },
                 IsSelected = p.IsSelected
             }).ToList();

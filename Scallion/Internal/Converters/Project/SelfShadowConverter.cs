@@ -20,8 +20,11 @@ namespace Scallion.Internal.Converters.Project
                 KeyFrames = src.KeyFrames.Extract(src.InitialKeyFrame).Select(p => new SelfShadowKeyFrame()
                 {
                     KeyFrameIndex = p.KeyFrameIndex,
-                    Type = p.SelfShadowType,
-                    Distance = p.Value.Distance
+                    Value = new SelfShadowState()
+                    {
+                        Type = p.SelfShadowType,
+                        Distance = p.Value.Distance
+                    }
                 }).ToList()
             };
         }
@@ -31,10 +34,10 @@ namespace Scallion.Internal.Converters.Project
             var init = src.KeyFrames.Single(p => p.KeyFrameIndex == 0);
             var frames = src.KeyFrames.Where(p => p.KeyFrameIndex > 0).Select(p => new Raw.Components.Project.SelfShadowKeyFrame()
             {
-                SelfShadowType = p.Type,
+                SelfShadowType = p.Value.Type,
                 Value = new Raw.Components.Project.SelfShadowState()
                 {
-                    Distance = p.Distance
+                    Distance = p.Value.Distance
                 },
                 IsSelected = p.IsSelected
             }).ToList().Pack(1);
@@ -50,10 +53,10 @@ namespace Scallion.Internal.Converters.Project
                 {
                     IsInitialKeyFrame = true,
                     NextDataIndex = frames.Count > 0 ? 1 : 0,
-                    SelfShadowType = init.Type,
+                    SelfShadowType = init.Value.Type,
                     Value = new Raw.Components.Project.SelfShadowState()
                     {
-                        Distance = init.Distance
+                        Distance = init.Value.Distance
                     },
                     IsSelected = init.IsSelected
                 },

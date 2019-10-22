@@ -19,7 +19,7 @@ namespace Scallion.Internal.Converters.Project
                     KeyFrames = src.MorphKeyFrames.Extract(src.InitialMorphKeyFrames[i]).Select(p => new MorphKeyFrame
                     {
                         KeyFrameIndex = p.KeyFrameIndex,
-                        Weight = p.Value.Weight,
+                        Value = new MorphState() { Weight = p.Value.Weight },
                         IsSelected = p.IsSelected
                     }).ToList(),
                     CurrentStatus = new MorphState() { Weight = src.CurrentMorphStatuses[i].Weight }
@@ -45,7 +45,7 @@ namespace Scallion.Internal.Converters.Project
                 var frames = src.Morphs[i].KeyFrames.Select(p => new Raw.Components.Project.MorphKeyFrame()
                 {
                     KeyFrameIndex = p.KeyFrameIndex,
-                    Value = new Raw.Components.Project.MorphState() { Weight = p.Weight },
+                    Value = new Raw.Components.Project.MorphState() { Weight = p.Value.Weight },
                     IsSelected = p.IsSelected
                 }).ToList();
 

@@ -13,7 +13,7 @@ namespace Scallion.Internal.Converters.Project
             obj.OutputSize = src.OutputSize;
             obj.Models = src.Models.Select(p => new ModelConverter().Convert(p)).ToList();
             obj.Accessories = src.Accessories.Select(p => new AccessoryConverter().Convert(p)).ToList();
-            obj.Camera = new CameraConverter().Convert(src.Camera);
+            obj.Camera = new CameraConverter(src.IsModelSelected).Convert(src.Camera);
             obj.Light = new LightConverter().Convert(src.Light);
             obj.Media = new MediaConverter().Convert(src.Media);
             obj.SelfShadow = new SelfShadowConverter().Convert(src.SelfShadow);
@@ -40,7 +40,7 @@ namespace Scallion.Internal.Converters.Project
             var camframedic = obj.Camera.KeyFrames.ToDictionary(p => p.KeyFrameIndex, p => p);
             foreach (var frame in src.Camera.KeyFrames.Extract(src.Camera.InitialKeyFrame))
             {
-                camframedic[frame.KeyFrameIndex].FollowingBone = ResolveReference(frame.FollowingBone);
+                camframedic[frame.KeyFrameIndex].Value.FollowingBone = ResolveReference(frame.FollowingBone);
             }
 
             obj.Camera.CurrentStatus.FollowingBone = ResolveReference(src.CameraFollowingBone);
@@ -53,7 +53,7 @@ namespace Scallion.Internal.Converters.Project
                 foreach (var keyframe in accessory.KeyFrames.Extract(accessory.InitialKeyFrame))
                 {
                     var reference = keyframe.Value.ExternalParent;
-                    framedic[keyframe.KeyFrameIndex].ExternalParent = ResolveReference(keyframe.Value.ExternalParent);
+                    framedic[keyframe.KeyFrameIndex].Value.ExternalParent = ResolveReference(keyframe.Value.ExternalParent);
                 }
 
                 accdic[accessory.Index].CurrentStatus.ExternalParent = ResolveReference(accessory.CurrentStatus.ExternalParent);
@@ -73,7 +73,7 @@ namespace Scallion.Internal.Converters.Project
             obj.OutputSize = src.OutputSize;
             obj.Models = src.Models.Select(p => new ModelConverter().ConvertBack(p)).ToList();
             obj.Accessories = src.Accessories.Select(p => new AccessoryConverter().ConvertBack(p)).ToList();
-            obj.Camera = new CameraConverter().ConvertBack(src.Camera);
+            obj.Camera = new CameraConverter(src.Panel.IsModelSelected).ConvertBack(src.Camera);
             obj.Light = new LightConverter().ConvertBack(src.Light);
             obj.Media = new MediaConverter().ConvertBack(src.Media);
             obj.SelfShadow = new SelfShadowConverter().ConvertBack(src.SelfShadow);
@@ -99,7 +99,7 @@ namespace Scallion.Internal.Converters.Project
             var camframedic = obj.Camera.KeyFrames.Extract(obj.Camera.InitialKeyFrame).ToDictionary(p => p.KeyFrameIndex, p => p);
             foreach (var frame in src.Camera.KeyFrames)
             {
-                camframedic[frame.KeyFrameIndex].FollowingBone = ResolveReference(frame.FollowingBone);
+                camframedic[frame.KeyFrameIndex].FollowingBone = ResolveReference(frame.Value.FollowingBone);
             }
 
             obj.CameraFollowingBone = ResolveReference(src.Camera.CurrentStatus.FollowingBone);
@@ -111,7 +111,7 @@ namespace Scallion.Internal.Converters.Project
                 var framedic = accdic[(byte)accessory.Index].KeyFrames.Extract(accdic[(byte)accessory.Index].InitialKeyFrame).ToDictionary(p => p.KeyFrameIndex, p => p);
                 foreach (var keyframe in accessory.KeyFrames)
                 {
-                    framedic[keyframe.KeyFrameIndex].Value.ExternalParent = ResolveReference(keyframe.ExternalParent);
+                    framedic[keyframe.KeyFrameIndex].Value.ExternalParent = ResolveReference(keyframe.Value.ExternalParent);
                 }
                 accdic[(byte)accessory.Index].CurrentStatus.ExternalParent = ResolveReference(accessory.CurrentStatus.ExternalParent);
             }

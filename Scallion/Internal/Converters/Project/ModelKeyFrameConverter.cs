@@ -26,20 +26,22 @@ namespace Scallion.Internal.Converters.Project
                         modeldic[model.Index].Bones[model.ExternalParentBoneIndices[i]].ExternalParentKeyFrames.Add(new ExternalParentKeyFrame()
                         {
                             KeyFrameIndex = keyframe.KeyFrameIndex,
-                            Reference = reference.ModelIndex == -1 ? new BoneReference() : new BoneReference(
+                            Value = new ExternalParentState()
+                            {
+                                Reference = reference.ModelIndex == -1 ? new BoneReference() : new BoneReference(
                                 model: modeldic[reference.ModelIndex],
-                                bone: reference.BoneIndex == -1 ? null : modeldic[reference.ModelIndex].Bones[reference.BoneIndex]
-                                ),
+                                bone: reference.BoneIndex == -1 ? null : modeldic[reference.ModelIndex].Bones[reference.BoneIndex])
+                            },
                             IsSelected = keyframe.IsSelected
                         });
                     }
 
                     for (int i = 0; i < model.IKBonesCount; i++)
                     {
-                        ikdic[model.IKBoneIndices[i]].IKStateKeyFrames.Add(new IKStateKeyFrame()
+                        ikdic[model.IKBoneIndices[i]].IKStateKeyFrames.Add(new IKBoneKeyFrame()
                         {
                             KeyFrameIndex = keyframe.KeyFrameIndex,
-                            IsIKEnabled = keyframe.Value.IKEnabled[i],
+                            Value = new IKBoneState() { IsIKEnabled = keyframe.Value.IKEnabled[i] },
                             IsSelected = keyframe.IsSelected
                         });
                     }
@@ -47,7 +49,7 @@ namespace Scallion.Internal.Converters.Project
                     modeldic[model.Index].VisibilityKeyFrames.Add(new VisibilityKeyFrame()
                     {
                         KeyFrameIndex = keyframe.KeyFrameIndex,
-                        IsVisible = keyframe.Value.IsVisible,
+                        Value = new VisibilityState() { IsVisible = keyframe.Value.IsVisible },
                         IsSelected = keyframe.IsSelected
                     });
                 }
@@ -80,7 +82,7 @@ namespace Scallion.Internal.Converters.Project
             foreach (var model in src.Models)
             {
                 var ikBoneIndices = model.Bones.Select((p, i) => new { Index = i, Bone = p }).Where(p => p.Bone is IKBone).Select(p => p.Index).ToList();
-                var ikKeyFrameNodes = ikBoneIndices.Select(p => new LinkedList<IKStateKeyFrame>((model.Bones[p] as IKBone).IKStateKeyFrames.OrderBy(q => q.KeyFrameIndex)).First).ToList();
+                var ikKeyFrameNodes = ikBoneIndices.Select(p => new LinkedList<IKBoneKeyFrame>((model.Bones[p] as IKBone).IKStateKeyFrames.OrderBy(q => q.KeyFrameIndex)).First).ToList();
                 var externalParentBoneIndices = model.Bones.Select((p, i) => new { Index = i, Count = p.ExternalParentKeyFrames.Count }).Where(p => p.Count > 0).Select(p => p.Index).ToList();
                 var externalParentKeyFrameNodes = externalParentBoneIndices.Select(p => new LinkedList<ExternalParentKeyFrame>(model.Bones[p].ExternalParentKeyFrames.OrderBy(q => q.KeyFrameIndex)).First).ToList();
                 var visibilityKeyFrameNode = new LinkedList<VisibilityKeyFrame>(model.VisibilityKeyFrames.OrderBy(p => p.KeyFrameIndex)).First;
@@ -100,7 +102,7 @@ namespace Scallion.Internal.Converters.Project
 
                 // first item is -1(strange).
                 externalParentBoneIndices.Insert(0, -1);
-                externalParentKeyFrameNodes.Insert(0, new LinkedList<ExternalParentKeyFrame>(new[] { new ExternalParentKeyFrame() { Reference = new BoneReference() } }).First);
+                externalParentKeyFrameNodes.Insert(0, new LinkedList<ExternalParentKeyFrame>(new[] { new ExternalParentKeyFrame() { Value = new ExternalParentState() { Reference = new BoneReference() } } }).First);
 
                 foreach (int idx in keyFrameIndices.OrderBy(p => p))
                 {
@@ -122,7 +124,7 @@ namespace Scallion.Internal.Converters.Project
 
                     var boneRefs = externalParentKeyFrameNodes.Select(p =>
                     {
-                        var reference = p.Value.Reference;
+                        var reference = p.Value.Value.Reference;
                         return reference.TargetModel == null ? Raw.Components.Project.BoneReference.Empty :
                             new Raw.Components.Project.BoneReference(reference.TargetModel.Index, reference.TargetBone == null ? -1 : boneIndexDic[reference.TargetModel][reference.TargetBone]);
                     }).ToList();
@@ -131,9 +133,9 @@ namespace Scallion.Internal.Converters.Project
                         KeyFrameIndex = idx,
                         Value = new Raw.Components.Project.ModelState()
                         {
-                            IKEnabled = ikKeyFrameNodes.Select(p => p.Value.IsIKEnabled).ToList(),
+                            IKEnabled = ikKeyFrameNodes.Select(p => p.Value.Value.IsIKEnabled).ToList(),
                             ExternalParentBoneStatuses = boneRefs,
-                            IsVisible = visibilityKeyFrameNode.Value.IsVisible
+                            IsVisible = visibilityKeyFrameNode.Value.Value.IsVisible
                         },
                         IsSelected = false
                     });

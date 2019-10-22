@@ -57,49 +57,12 @@ namespace Scallion.DomainModels.Components
         }
     }
 
-    /// <summary>
-    /// Represents a key frame for <see cref="Accessory"/>.
-    /// </summary>
-    public class AccessoryKeyFrame : KeyFrame
+    public class AccessoryKeyFrame : KeyFrame<AccessoryState>
     {
-        /// <summary>
-        /// Gets or sets the opacity factor applied to the accessory.
-        /// </summary>
-        public float Opacity { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the accessory is visible.
-        /// </summary>
-        public bool IsVisible { get; set; }
-
-        /// <summary>
-        /// Gets or sets the reference to the external parent bone.
-        /// </summary>
-        public BoneReference ExternalParent { get; set; }
-
-        /// <summary>
-        /// Gets or sets the position of the accessory.
-        /// </summary>
-        public Vector3 Position { get; set; }
-
-        /// <summary>
-        /// Gets or sets the angle of rotation.
-        /// </summary>
-        public Vector3 Rotation { get; set; }
-
-        /// <summary>
-        /// Gets or sets the scale factor applied to the accessory.
-        /// </summary>
-        public float Scale { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the shadowing is enabled.
-        /// </summary>
-        public bool IsShadowEnabled { get; set; }
     }
 
     /// <summary>
-    /// Represents the current accessory status.
+    /// Represents a state for <see cref="Accessory"/>.
     /// </summary>
     public class AccessoryState
     {
@@ -114,7 +77,7 @@ namespace Scallion.DomainModels.Components
         public bool IsVisible { get; set; }
 
         /// <summary>
-        /// Gets or sets the reference for external parent bone.
+        /// Gets or sets the reference to the external parent bone.
         /// </summary>
         public BoneReference ExternalParent { get; set; }
 

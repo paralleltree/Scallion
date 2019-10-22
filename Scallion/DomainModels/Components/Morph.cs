@@ -30,19 +30,12 @@ namespace Scallion.DomainModels.Components
         }
     }
 
-    /// <summary>
-    /// Represents a key frame for a morph.
-    /// </summary>
-    public class MorphKeyFrame : KeyFrame
+    public class MorphKeyFrame : KeyFrame<MorphState>
     {
-        /// <summary>
-        /// Gets or sets a value of the morph in this key frame.
-        /// </summary>
-        public float Weight { get; set; }
     }
 
     /// <summary>
-    /// Represents the current morph status.
+    /// Represents a state for a morph.
     /// </summary>
     public class MorphState
     {

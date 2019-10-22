@@ -62,46 +62,12 @@ namespace Scallion.DomainModels.Components
         }
     }
 
-    /// <summary>
-    /// Represents a key frame for gravity.
-    /// </summary>
-    public class GravityKeyFrame : KeyFrame
+    public class GravityKeyFrame : KeyFrame<GravityState>
     {
-        /// <summary>
-        /// Gets or sets a value indicating gravitational acceleration.
-        /// </summary>
-        public float Acceleration { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating the amount of noise for physics calculation.
-        /// </summary>
-        public int NoiseAmount { get; set; }
-
-        /// <summary>
-        /// Gets or sets a direction of gravitational acceleration.
-        /// </summary>
-        public Vector3 Direction { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the noise is applied.
-        /// </summary>
-        public bool IsNoiseEnabled { get; set; }
-
-
-        public static implicit operator GravityState(GravityKeyFrame keyframe)
-        {
-            return new GravityState()
-            {
-                Acceleration = keyframe.Acceleration,
-                NoiseAmount = keyframe.NoiseAmount,
-                Direction = keyframe.Direction,
-                IsNoiseEnabled = keyframe.IsNoiseEnabled
-            };
-        }
     }
 
     /// <summary>
-    /// Represents the current gravity status.
+    /// Represents a gravity state.
     /// </summary>
     public class GravityState
     {

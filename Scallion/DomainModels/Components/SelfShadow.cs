@@ -34,27 +34,20 @@ namespace Scallion.DomainModels.Components
         }
     }
 
+    public class SelfShadowKeyFrame : KeyFrame<SelfShadowState>
+    {
+    }
+
     /// <summary>
-    /// Represents a key frame for a self shadow configuration.
+    /// Represents a state for a self shadow configuration.
     /// </summary>
-    public class SelfShadowKeyFrame : KeyFrame
+    public class SelfShadowState
     {
         /// <summary>
         /// Gets or sets a type of self-shadowing methods in <see cref="SelfShadowType"/>.
         /// </summary>
         public SelfShadowType Type { get; set; }
 
-        /// <summary>
-        /// Gets or sets the shadow distance.
-        /// </summary>
-        public int Distance { get; set; }
-    }
-
-    /// <summary>
-    /// Represents the current self shadow status.
-    /// </summary>
-    public class SelfShadowState
-    {
         /// <summary>
         /// Gets or sets the shadow distance.
         /// </summary>
