@@ -8,7 +8,7 @@ namespace Scallion.Core
     /// <summary>
     /// Represents a deserializer for <see cref="MMDObject"/>.
     /// </summary>
-    internal class MoDeserializer : MoIO
+    internal class MoDeserializer : MoIO, IDisposable
     {
         private BinaryReader _stream;
 
@@ -52,9 +52,31 @@ namespace Scallion.Core
         /// <returns>The deserialized collection of the <typeparamref name="T"/> class</returns>
         public List<T> DeserializeList<T>() where T : MMDObject, new()
         {
-            int count = ReadInt32();
+            return DeserializeList<T>(ReadInt32());
+        }
+
+        /// <summary>
+        /// Deserializes a collection of the <typeparamref name="T"/> class from the stream.
+        /// </summary>
+        /// <typeparam name="T">The type of a object to be deserialized</typeparam>
+        /// <param name="count">The number of elements to deserialize</param>
+        /// <returns>The deserialized collection of the <typeparamref name="T"/> class</returns>
+        public List<T> DeserializeList<T>(int count) where T : MMDObject, new()
+        {
+            return DeserializeList<T>(count, () => Deserialize<T>());
+        }
+
+        /// <summary>
+        /// Returns a collection of the <typeparamref name="T"/> class by using the specified selector.
+        /// </summary>
+        /// <typeparam name="T">The type of a object to be collected</typeparam>
+        /// <param name="count">The number of elements to collect</param>
+        /// <param name="selector">The function to collect each element</param>
+        /// <returns>The collection of the <typeparamref name="T"/> class</returns>
+        public List<T> DeserializeList<T>(int count, Func<T> selector)
+        {
             var list = new List<T>(count);
-            for (int i = 0; i < count; i++) list.Add(Deserialize<T>());
+            for (int i = 0; i < count; i++) list.Add(selector());
             return list;
         }
 
@@ -105,6 +127,11 @@ namespace Scallion.Core
         {
             byte length = _stream.ReadByte();
             return ReadByteString(length);
+        }
+
+        public void Dispose()
+        {
+            _stream.Dispose();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Scallion.Core
     /// <summary>
     /// Represents a serializer for <see cref="MMDObject"/>.
     /// </summary>
-    internal class MoSerializer : MoIO
+    internal class MoSerializer : MoIO, IDisposable
     {
         private BinaryWriter _stream;
 
@@ -34,14 +34,24 @@ namespace Scallion.Core
         }
 
         /// <summary>
-        /// Serializes a collection of the <typeparamref name="T"/> class to the stream.
+        /// Serializes a collection of the <typeparamref name="T"/> class without the number of its elements to the stream.
+        /// </summary>
+        /// <typeparam name="T">The type of objects to be serialized</typeparam>
+        /// <param name="list">The collection to be serialized</param>
+        public void SerializeListWithoutCount<T>(List<T> list) where T : MMDObject
+        {
+            foreach (var item in list) item.Serialize(this);
+        }
+
+        /// <summary>
+        /// Serializes a collection of the <typeparamref name="T"/> class with the number of its elements to the stream.
         /// </summary>
         /// <typeparam name="T">The type of objects to be serialized</typeparam>
         /// <param name="list">The collection to be serialized</param>
         public void SerializeList<T>(List<T> list) where T : MMDObject
         {
             WriteInt32(list.Count);
-            foreach (var item in list) item.Serialize(this);
+            SerializeListWithoutCount(list);
         }
 
 
@@ -94,6 +104,11 @@ namespace Scallion.Core
             byte[] data = FileEncoding.GetBytes(value);
             _stream.Write((byte)data.Length);
             _stream.Write(data);
+        }
+
+        public void Dispose()
+        {
+            _stream.Dispose();
         }
     }
 }

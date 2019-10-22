@@ -1,5 +1,5 @@
 version: '{build}'
-os: Visual Studio 2015
+os: Visual Studio 2017
 configuration: Release
 platform: Any CPU
 skip_tags: true
@@ -23,21 +23,13 @@ test_script:
     $filter = "+[*]Scallion.* -[*]Scallion.Tests.*"
 
     & $opencover -register:user -target:nunit-console.exe "-targetargs:$targetargs" "-filter:$filter" -returntargetcode -hideskipped:All -output:coverage.xml
-
-    $env:Path = "C:\Python34;C:\Python34\Scripts;$env:Path"
-
-    python -m pip install --upgrade pip
-
-    pip install codecov
-
-    &{codecov -f "coverage.xml"}
 artifacts:
 - path: Scallion\bin\$(configuration)
   name: Scallion
 deploy:
 - provider: NuGet
   api_key:
-    secure: fb6UDblafl4cIHQVhvG2PO5erdbxkG7Rv18HagRKkrbcLS6+fmu3OQi1LsD7uZF5
+    secure: J0dY82noX2HQLnTB/BYBertJ4rKlsVTyayl2QM+nwpTvB170mk2Vjqhw7YSSQ6j2
   on:
     branch: master
 - provider: GitHub
@@ -48,3 +40,5 @@ deploy:
   draft: true
   on:
     branch: master
+cache:
+- packages -> **\packages.config

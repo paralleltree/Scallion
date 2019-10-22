@@ -10,23 +10,38 @@ namespace Scallion.DomainModels.Components
     public class SelfShadow
     {
         /// <summary>
+        /// Gets or sets the value whether self-shadow is enabled.
+        /// </summary>
+        public bool IsEnabled { get; set; }
+
+        /// <summary>
         /// Gets or sets a collection of the <see cref="SelfShadowKeyFrame"/> class.
         /// </summary>
         public List<SelfShadowKeyFrame> KeyFrames { get; set; }
+
+        /// <summary>
+        /// Gets or sets a instance of <see cref="SelfShadowState"/> indicating current self shadow status.
+        /// </summary>
+        public SelfShadowState CurrentStatus { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SelfShadow"/> class.
         /// </summary>
         public SelfShadow()
         {
+            CurrentStatus = new SelfShadowState();
             KeyFrames = new List<SelfShadowKeyFrame>();
         }
     }
 
+    public class SelfShadowKeyFrame : KeyFrame<SelfShadowState>
+    {
+    }
+
     /// <summary>
-    /// Represents a key frame for a self shadow configuration.
+    /// Represents a state for a self shadow configuration.
     /// </summary>
-    public class SelfShadowKeyFrame : KeyFrame
+    public class SelfShadowState
     {
         /// <summary>
         /// Gets or sets a type of self-shadowing methods in <see cref="SelfShadowType"/>.

@@ -22,11 +22,23 @@ namespace Scallion.DomainModels.Components
         public List<BoneKeyFrame> KeyFrames { get; set; }
 
         /// <summary>
+        /// Gets or sets a instance of <see cref="BoneState"/> indicating current bone status.
+        /// </summary>
+        public CurrentBoneState CurrentStatus { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of the <see cref="ExternalParentKeyFrame"/> class.
+        /// </summary>
+        public List<ExternalParentKeyFrame> ExternalParentKeyFrames { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Bone"/> class.
         /// </summary>
         public Bone()
         {
+            CurrentStatus = new CurrentBoneState();
             KeyFrames = new List<BoneKeyFrame>();
+            ExternalParentKeyFrames = new List<ExternalParentKeyFrame>();
         }
     }
 
@@ -36,23 +48,43 @@ namespace Scallion.DomainModels.Components
     public class IKBone : Bone
     {
         /// <summary>
-        /// Gets or sets a collection of the <see cref="IKStateKeyFrame"/> class.
+        /// Gets or sets the current IK status.
         /// </summary>
-        public List<IKStateKeyFrame> IKStateKeyFrames { get; set; }
+        public IKBoneState CurrentIKStatus { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of the <see cref="IKBoneKeyFrame"/> class.
+        /// </summary>
+        public List<IKBoneKeyFrame> IKStateKeyFrames { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IKBone"/> class.
         /// </summary>
         public IKBone()
         {
-            IKStateKeyFrames = new List<IKStateKeyFrame>();
+            IKStateKeyFrames = new List<IKBoneKeyFrame>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IKBone"/> from the specified <see cref="Bone"/>.
+        /// </summary>
+        /// <param name="bone">The source bone</param>
+        public IKBone(Bone bone) : this()
+        {
+            Name = bone.Name;
+            KeyFrames = bone.KeyFrames;
+            CurrentStatus = bone.CurrentStatus;
         }
     }
 
+    public class BoneKeyFrame : KeyFrame<BoneState>
+    {
+    }
+
     /// <summary>
-    /// Represents a key frame for a bone.
+    /// Represents a state for a bone.
     /// </summary>
-    public class BoneKeyFrame : KeyFrame
+    public class BoneState
     {
         /// <summary>
         /// Gets or sets a position of the bone in this key frame.
@@ -70,18 +102,46 @@ namespace Scallion.DomainModels.Components
         public BoneInterpolation Interpolation { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the physics calculation for the bone is enabled.
+        /// </summary>
+        public bool IsPhysicsEnabled { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reference to the external parent bone.
+        /// </summary>
+        public BoneReference ExternalParent { get; set; }
+
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BoneKeyFrame"/> class.
         /// </summary>
-        public BoneKeyFrame()
+        public BoneState()
         {
             Interpolation = new BoneInterpolation();
         }
     }
 
+    public class CurrentBoneState : BoneState
+    {
+        /// <summary>
+        /// Gets or sets a value indicating whether the bone state is saved.
+        /// </summary>
+        public bool IsSaved { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the bone is selected on the timeline panel.
+        /// </summary>
+        public bool IsRowSelected { get; set; }
+    }
+
+    public class IKBoneKeyFrame : KeyFrame<IKBoneState>
+    {
+    }
+
     /// <summary>
-    /// Represents a key frame indicating whether IK of the bone is enabled.
+    /// Represents the IK bone state.
     /// </summary>
-    public class IKStateKeyFrame : KeyFrame
+    public class IKBoneState
     {
         /// <summary>
         /// Gets or sets a value indicating whether IK of the bone is enabled.
