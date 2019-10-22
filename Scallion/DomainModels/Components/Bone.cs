@@ -53,7 +53,7 @@ namespace Scallion.DomainModels.Components
         public IKBoneState CurrentIKStatus { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of the <see cref="IKStateKeyFrame"/> class.
+        /// Gets or sets a collection of the <see cref="IKBoneKeyFrame"/> class.
         /// </summary>
         public List<IKBoneKeyFrame> IKStateKeyFrames { get; set; }
 
