@@ -77,4 +77,94 @@ namespace Scallion.Internal
             Value = Color.FromArgb((int)(archive.ReadSingle() * 256), (int)(archive.ReadSingle() * 256), (int)(archive.ReadSingle() * 256));
         }
     }
+
+    internal class Int32ColorWrapper : StructWrapper<Color>
+    {
+        public Int32ColorWrapper()
+        {
+        }
+
+        public Int32ColorWrapper(Color value) : base(value)
+        {
+        }
+
+        public override void Serialize(MoSerializer archive)
+        {
+            archive.WriteInt32((int)Value.R);
+            archive.WriteInt32((int)Value.G);
+            archive.WriteInt32((int)Value.B);
+        }
+
+        public override void Deserialize(MoDeserializer archive)
+        {
+            Value = Color.FromArgb(archive.ReadInt32(), archive.ReadInt32(), archive.ReadInt32());
+        }
+    }
+
+    internal class PointWrapper : StructWrapper<Point>
+    {
+        public PointWrapper()
+        {
+        }
+
+        public PointWrapper(Point value) : base(value)
+        {
+        }
+
+        public override void Serialize(MoSerializer archive)
+        {
+            archive.WriteInt32(Value.X);
+            archive.WriteInt32(Value.Y);
+        }
+
+        public override void Deserialize(MoDeserializer archive)
+        {
+            Value = new Point(archive.ReadInt32(), archive.ReadInt32());
+        }
+    }
+
+    internal class SizeWrapper : StructWrapper<Size>
+    {
+        public SizeWrapper()
+        {
+        }
+
+        public SizeWrapper(Size value) : base(value)
+        {
+        }
+
+        public override void Serialize(MoSerializer archive)
+        {
+            archive.WriteInt32(Value.Width);
+            archive.WriteInt32(Value.Height);
+        }
+
+        public override void Deserialize(MoDeserializer archive)
+        {
+            Value = new Size(archive.ReadInt32(), archive.ReadInt32());
+        }
+    }
+
+    internal class BoneReferenceWrapper : StructWrapper<Raw.Components.Project.BoneReference>
+    {
+        public BoneReferenceWrapper()
+        {
+        }
+
+        public BoneReferenceWrapper(Raw.Components.Project.BoneReference value)
+            : base(value)
+        {
+        }
+
+        public override void Serialize(MoSerializer archive)
+        {
+            archive.WriteInt32(Value.ModelIndex);
+            archive.WriteInt32(Value.BoneIndex);
+        }
+
+        public override void Deserialize(MoDeserializer archive)
+        {
+            Value = new Raw.Components.Project.BoneReference(archive.ReadInt32(), archive.ReadInt32());
+        }
+    }
 }

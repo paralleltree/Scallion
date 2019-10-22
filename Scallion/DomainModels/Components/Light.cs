@@ -13,6 +13,11 @@ namespace Scallion.DomainModels.Components
     public class Light
     {
         /// <summary>
+        /// Gets or sets a instance of <see cref="LightState"/> indicating current lighting status.
+        /// </summary>
+        public LightState CurrentStatus { get; set; }
+
+        /// <summary>
         /// Gets or sets a collection of the <see cref="LightKeyFrame"/> class.
         /// </summary>
         public List<LightKeyFrame> KeyFrames { get; set; }
@@ -22,22 +27,27 @@ namespace Scallion.DomainModels.Components
         /// </summary>
         public Light()
         {
+            CurrentStatus = new LightState();
             KeyFrames = new List<LightKeyFrame>();
         }
     }
 
+    public class LightKeyFrame : KeyFrame<LightState>
+    {
+    }
+
     /// <summary>
-    /// Represents a key frame for a light configuration.
+    /// Represents a state for light configuration.
     /// </summary>
-    public class LightKeyFrame : KeyFrame
+    public class LightState
     {
         /// <summary>
-        /// Gets or sets a position of the light in this key frame.
+        /// Gets or sets a position of the light.
         /// </summary>
         public Vector3 Position { get; set; }
 
         /// <summary>
-        /// Gets or sets a color of the light in this key frame.
+        /// Gets or sets a color of the light.
         /// </summary>
         public Color Color { get; set; }
     }

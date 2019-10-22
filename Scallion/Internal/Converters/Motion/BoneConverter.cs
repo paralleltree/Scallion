@@ -17,9 +17,12 @@ namespace Scallion.Internal.Converters.Motion
                 dic[item.BoneName].KeyFrames.Add(new BoneKeyFrame()
                 {
                     KeyFrameIndex = item.KeyFrameIndex,
-                    Position = item.Position,
-                    Quaternion = item.Quaternion,
-                    Interpolation = item.Interpolation
+                    Value = new BoneState()
+                    {
+                        Position = item.Position,
+                        Quaternion = item.Quaternion,
+                        Interpolation = item.Interpolation
+                    }
                 });
             }
             return dic.Values.ToList();
@@ -31,14 +34,14 @@ namespace Scallion.Internal.Converters.Motion
             {
                 KeyFrameIndex = q.KeyFrameIndex,
                 BoneName = p.Name,
-                Position = q.Position,
-                Quaternion = q.Quaternion,
+                Position = q.Value.Position,
+                Quaternion = q.Value.Quaternion,
                 Interpolation = new Raw.Components.Motion.BoneInterpolationImpl()
                 {
-                    X = q.Interpolation.X,
-                    Y = q.Interpolation.Y,
-                    Z = q.Interpolation.Z,
-                    R = q.Interpolation.R
+                    X = q.Value.Interpolation.X,
+                    Y = q.Value.Interpolation.Y,
+                    Z = q.Value.Interpolation.Z,
+                    R = q.Value.Interpolation.R
                 }
             }));
         }

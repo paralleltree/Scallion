@@ -20,7 +20,7 @@ namespace Scallion.Internal.Converters.Motion
                 dic[item.MorphName].KeyFrames.Add(new MorphKeyFrame()
                 {
                     KeyFrameIndex = item.KeyFrameIndex,
-                    Weight = item.Weight
+                    Value = new MorphState() { Weight = item.Weight }
                 });
             }
             return dic.Values.ToList();
@@ -32,7 +32,7 @@ namespace Scallion.Internal.Converters.Motion
             {
                 MorphName = p.Name,
                 KeyFrameIndex = q.KeyFrameIndex,
-                Weight = q.Weight
+                Weight = q.Value.Weight
             }));
         }
     }

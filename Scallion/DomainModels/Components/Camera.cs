@@ -17,18 +17,28 @@ namespace Scallion.DomainModels.Components
         public List<CameraKeyFrame> KeyFrames { get; set; }
 
         /// <summary>
+        /// Gets or sets a instance of <see cref="CameraState"/> indicating current camera status.
+        /// </summary>
+        public CameraState CurrentStatus { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
         public Camera()
         {
+            CurrentStatus = new CameraState();
             KeyFrames = new List<CameraKeyFrame>();
         }
     }
 
+    public class CameraKeyFrame : KeyFrame<CameraState>
+    {
+    }
+
     /// <summary>
-    /// Represents a key frame for a camera.
+    /// Represents a state for a camera.
     /// </summary>
-    public class CameraKeyFrame : KeyFrame
+    public class CameraState
     {
         /// <summary>
         /// Gets or sets the position of the camera in this key frame.
@@ -64,9 +74,14 @@ namespace Scallion.DomainModels.Components
         public bool IsPerspectiveEnabled { get; set; }
 
         /// <summary>
+        /// Gets or sets the reference to the external model bone.
+        /// </summary>
+        public BoneReference FollowingBone { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CameraKeyFrame"/> class.
         /// </summary>
-        public CameraKeyFrame()
+        public CameraState()
         {
             Interpolation = new CameraInterpolation();
         }

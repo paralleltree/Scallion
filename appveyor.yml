@@ -1,5 +1,5 @@
 version: '{build}'
-os: Visual Studio 2015
+os: Visual Studio 2017
 configuration: Release
 platform: Any CPU
 skip_tags: true
@@ -23,14 +23,6 @@ test_script:
     $filter = "+[*]Scallion.* -[*]Scallion.Tests.*"
 
     & $opencover -register:user -target:nunit-console.exe "-targetargs:$targetargs" "-filter:$filter" -returntargetcode -hideskipped:All -output:coverage.xml
-
-    $env:Path = "C:\Python34;C:\Python34\Scripts;$env:Path"
-
-    python -m pip install --upgrade pip
-
-    pip install codecov
-
-    &{codecov -f "coverage.xml"}
 artifacts:
 - path: Scallion\bin\$(configuration)
   name: Scallion
