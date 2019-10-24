@@ -68,6 +68,7 @@
     <Compile Include="Internal\NumericsExtensions.cs" />
     <Compile Include="UnitTests\Core\MoSerializerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\DomainModels\InterpolationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scallion\Scallion.csproj">
