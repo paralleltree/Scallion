@@ -15,10 +15,10 @@ namespace Scallion.DomainModels.Components
         public Model TargetModel { get; }
 
         /// <summary>
-        /// Gets the parent bone of <see cref="TargetModel"/>.
-        /// The null value represents the root of model.
+        /// Gets the parent bone index of <see cref="TargetModel"/>.
+        /// The value "-1" represents the root of model.
         /// </summary>
-        public Bone TargetBone { get; }
+        public int TargetBoneIndex { get; } = -1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BoneReference"/> class.
@@ -31,13 +31,13 @@ namespace Scallion.DomainModels.Components
         /// Initializes a new instance of the <see cref="BoneReference"/> class from the model and bone.
         /// </summary>
         /// <param name="model">The parent model</param>
-        /// <param name="bone">The parent bone being a part of <paramref name="model"/></param>
-        public BoneReference(Model model, Bone bone)
+        /// <param name="boneIndex">The parent bone index of <paramref name="model"/></param>
+        public BoneReference(Model model, int boneIndex)
         {
-            if (!model.Bones.Contains(bone))
+            if (boneIndex < -1 || boneIndex >= model.Bones.Count)
                 throw new ArgumentException("The collection of bones of model must contain the bone.");
             TargetModel = model;
-            TargetBone = bone;
+            TargetBoneIndex = boneIndex;
         }
     }
 }
