@@ -30,7 +30,7 @@ namespace Scallion.Internal.Converters.Project
             BoneReference ResolveReference(Raw.Components.Project.BoneReference reference)
             {
                 return reference.ModelIndex == -1 ? new BoneReference() :
-                    new BoneReference(modeldic[reference.ModelIndex], modeldic[reference.ModelIndex].Bones[reference.BoneIndex]);
+                    new BoneReference(modeldic[reference.ModelIndex], reference.BoneIndex);
             }
 
             // for bones
@@ -90,7 +90,7 @@ namespace Scallion.Internal.Converters.Project
             Raw.Components.Project.BoneReference ResolveReference(BoneReference reference)
             {
                 return reference.TargetModel == null ? Raw.Components.Project.BoneReference.Empty :
-                    new Raw.Components.Project.BoneReference(reference.TargetModel.Index, boneIndexDic[reference.TargetModel][reference.TargetBone]);
+                    new Raw.Components.Project.BoneReference(reference.TargetModel.Index, reference.TargetBoneIndex);
             }
 
             new ModelKeyFrameConverter().ConvertBack(src, obj);

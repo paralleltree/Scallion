@@ -11,7 +11,7 @@ namespace Scallion.Raw
 {
     internal class Project : MMDFile<Project>
     {
-        public readonly string Signature = "Polygon Movie maker 0002";
+        public static readonly string Signature = "Polygon Movie maker 0002";
 
         public Size OutputSize { get; set; }
         public int TimelinePanelWidth { get; set; }
