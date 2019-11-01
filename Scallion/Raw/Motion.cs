@@ -10,8 +10,8 @@ namespace Scallion.Raw
 {
     internal class Motion : MMDFile<Motion>
     {
-        public readonly string Signature = "Vocaloid Motion Data 0002";
-        public readonly string CameraName = "カメラ・照明\0on Data";
+        public static readonly string Signature = "Vocaloid Motion Data 0002";
+        public static readonly string CameraName = "カメラ・照明\0on Data";
 
         public string ModelName { get; set; }
         public List<BoneKeyFrame> BoneKeyFrames { get; set; }

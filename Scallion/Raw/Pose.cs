@@ -13,7 +13,7 @@ namespace Scallion.Raw
 {
     internal class Pose : IMMDFile<Pose>
     {
-        public readonly string Signature = "Vocaloid Pose Data file";
+        public static readonly string Signature = "Vocaloid Pose Data file";
 
         public string ModelName { get; set; }
         public List<Bone> Bones { get; set; }
