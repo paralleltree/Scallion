@@ -38,6 +38,9 @@ var project = new Project().Load(@"path\to\project.pmm");
 // project.Models...
 ```
 
+var pose = new Pose().Load(@"path\to\pose.vpd");
+// pose.Bones...
+
 ## Contributing
 
 Bug reports and pull requests are welcome on [GitHub](https://github.com/paralleltree/Scallion).
