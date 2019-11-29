@@ -30,7 +30,7 @@ namespace Scallion.Internal.Converters.Project
                             {
                                 Reference = reference.ModelIndex == -1 ? new BoneReference() : new BoneReference(
                                 model: modeldic[reference.ModelIndex],
-                                bone: reference.BoneIndex == -1 ? null : modeldic[reference.ModelIndex].Bones[reference.BoneIndex])
+                                boneIndex: reference.BoneIndex)
                             },
                             IsSelected = keyframe.IsSelected
                         });
@@ -62,7 +62,7 @@ namespace Scallion.Internal.Converters.Project
                     var reference = model.ExternalParentStatuses[i].ExternalParent;
                     modeldic[model.Index].Bones[bone].CurrentStatus.ExternalParent = reference.ModelIndex == -1 ? new BoneReference() : new BoneReference(
                         model: modeldic[reference.ModelIndex],
-                        bone: reference.BoneIndex == -1 ? null : modeldic[reference.ModelIndex].Bones[reference.BoneIndex]);
+                        boneIndex: reference.BoneIndex);
                 }
 
                 // current ik
@@ -126,7 +126,7 @@ namespace Scallion.Internal.Converters.Project
                     {
                         var reference = p.Value.Value.Reference;
                         return reference.TargetModel == null ? Raw.Components.Project.BoneReference.Empty :
-                            new Raw.Components.Project.BoneReference(reference.TargetModel.Index, reference.TargetBone == null ? -1 : boneIndexDic[reference.TargetModel][reference.TargetBone]);
+                            new Raw.Components.Project.BoneReference(reference.TargetModel.Index, reference.TargetBoneIndex);
                     }).ToList();
                     modelKeyFrames.Add(new Raw.Components.Project.ModelKeyFrame()
                     {
@@ -153,7 +153,7 @@ namespace Scallion.Internal.Converters.Project
                     if (p == -1) return new Raw.Components.Project.ExternalParentState() { ExternalParent = Raw.Components.Project.BoneReference.Empty };
                     var reference = model.Bones[p].CurrentStatus.ExternalParent;
                     var indexRef = reference.TargetModel == null ? Raw.Components.Project.BoneReference.Empty :
-                        new Raw.Components.Project.BoneReference(reference.TargetModel.Index, reference.TargetBone == null ? -1 : boneIndexDic[reference.TargetModel][reference.TargetBone]);
+                        new Raw.Components.Project.BoneReference(reference.TargetModel.Index, reference.TargetBoneIndex);
                     return new Raw.Components.Project.ExternalParentState()
                     {
                         ExternalParent = indexRef,

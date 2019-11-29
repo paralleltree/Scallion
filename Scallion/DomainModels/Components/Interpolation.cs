@@ -41,6 +41,30 @@ namespace Scallion.DomainModels.Components
             First = first;
             Second = second;
         }
+
+        /// <summary>
+        /// Get interpolated value using this interpolation.
+        /// </summary>
+        /// <param name="pos">The parameter moving from 0 to 1</param>
+        /// <returns>The interpolated value moving from 0 to 1</returns>
+        public float GetInterpolatedValue(float pos)
+        {
+            if (pos < 0 || pos > 1) throw new ArgumentOutOfRangeException("pos");
+            float f(float t, float p2, float p3) => 3 * (1 - t) * (1 - t) * t * p2 + 3 * (1 - t) * t * t * p3 + t * t * t;
+            float x2 = First.X / 127f;
+            float x3 = Second.X / 127f;
+            float upper = 1f;
+            float lower = 0;
+            for (int i = 0; i < 16; i++)
+            {
+                float x = (upper + lower) / 2;
+                float d = f(x, x2, x3) - pos;
+                if (Math.Abs(d) < 1e-6) break;
+                if (d < 0) lower = x;
+                else upper = x;
+            }
+            return f((upper + lower) / 2, First.Y / 127f, Second.Y / 127f);
+        }
     }
 
     /// <summary>
